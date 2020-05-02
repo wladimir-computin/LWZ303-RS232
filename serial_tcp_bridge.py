@@ -12,6 +12,9 @@ DEVICE = "/dev/ttyUSB0"
 BAUD = 9600
 SERIAL_TIMEOUT = 1
 
+FOOTER = b"\x10\x03"
+DATA_READY = b"\x10\x02"
+
 class TCPSerialBridge(asyncio.Protocol):
 	ser = None
 
@@ -28,6 +31,15 @@ class TCPSerialBridge(asyncio.Protocol):
 		print(f"READ: {s.hex()}\n")
 		if s != b"\x10":
 			 raise IOError("Error: heat pump does not respond - is it connected?")
+		 
+	def connected(self):
+		if ser is not None:
+			try:
+				self.hello_serial()
+				return True
+			except:
+				pass
+		return False
 
 	def close_serial(self):
 		if TCPSerialBridge.ser is not None:
@@ -80,10 +92,10 @@ class TCPSerialBridge(asyncio.Protocol):
 			print(f"RAW: {response.hex()}")
 			self.transport.write(response)
 
-			if flag_read and response == b"\x10\x02":
+			if flag_read and response == DATA_READY:
 				print("\nWRITE: 10\n")
 				self.ser.write(b"\x10")
-				response = TCPSerialBridge.ser.read(100)
+				response = TCPSerialBridge.ser.read_until(FOOTER)
 				print("CLIENT <- SERVER")
 				print(f"{self.address} <- {TCP_IP}")
 				print(f"RAW: {response.hex()}")
