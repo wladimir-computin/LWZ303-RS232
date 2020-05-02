@@ -6,7 +6,7 @@ def main():
 	trans = TransportTCP("192.168.178.201", 7777)
 	comm = Communicator(trans)
 	comm.start()
-	#response = comm.readRegister(b"\xfd")
+	response = comm.readRegister(b"\xfd")
 	response = comm.readRegister(b"\xfb")
 	comm.stop()
 
