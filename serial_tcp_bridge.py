@@ -15,6 +15,11 @@ SERIAL_TIMEOUT = 1
 FOOTER = b"\x10\x03"
 DATA_READY = b"\x10\x02"
 
+FLAG_CLOSE = b"CLOSE"
+FLAG_CONNECT = b"CONNECT"
+FLAG_HELLO = b"HELLO"
+FLAG_READ = b"READ"
+
 class TCPSerialBridge(asyncio.Protocol):
 	ser = None
 
@@ -61,20 +66,20 @@ class TCPSerialBridge(asyncio.Protocol):
 		try:
 			flag_open = False
 			flag_read = False
-			if data.startswith(b"CLOSE"):
+			if data.startswith(FLAG_CLOSE):
 				self.close_serial()
 				return
-			if data.startswith(b"CONNECT"):
+			if data.startswith(FLAG_CONNECT):
 				flag_open = True
 				self.close_serial()
 				self.connect_serial()
-				data = data[7:]
-			if data.startswith(b"HELLO"):
+				data = data[len(FLAG_CONNECT):]
+			if data.startswith(FLAG_HELLO):
 				self.hello_serial()
-				data = data[5:]
-			if data.startswith(b"READ"):
+				data = data[len(FLAG_HELLO):]
+			if data.startswith(FLAG_READ):
 				flag_read = True
-				data = data[4:]
+				data = data[len(FLAG_READ):]
 
 			print("CLIENT -> SERVER")
 			print(f"{self.address} -> {TCP_IP}")
