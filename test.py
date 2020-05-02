@@ -7,7 +7,6 @@ def main():
 	comm = Communicator(trans)
 	comm.start()
 	response = comm.readRegister(b"\xfd")
-	response = comm.readRegister(b"\xfb")
 	comm.stop()
 
 if __name__== "__main__":

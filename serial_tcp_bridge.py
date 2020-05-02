@@ -19,6 +19,7 @@ FLAG_CLOSE = b"CLOSE"
 FLAG_CONNECT = b"CONNECT"
 FLAG_HELLO = b"HELLO"
 FLAG_READ = b"READ"
+FLAG_RESET = b"RESET"
 
 class TCPSerialBridge(asyncio.Protocol):
 	ser = None
@@ -36,6 +37,13 @@ class TCPSerialBridge(asyncio.Protocol):
 		print(f"READ: {s.hex()}\n")
 		if s != b"\x10":
 			 raise IOError("Error: heat pump does not respond - is it connected?")
+		 
+	def reset_serial(self):
+		print("SERIAL RESET!")
+		print("WRITE: 1002")
+		TCPSerialBridge.ser.write(DATA_READY)
+		s = TCPSerialBridge.ser.read(1)
+		print(f"READ: {s.hex()}\n")
 		 
 	def connected(self):
 		if ser is not None:
@@ -66,6 +74,7 @@ class TCPSerialBridge(asyncio.Protocol):
 		try:
 			flag_open = False
 			flag_read = False
+			flag_reset = False
 			if data.startswith(FLAG_CLOSE):
 				self.close_serial()
 				return
@@ -80,6 +89,9 @@ class TCPSerialBridge(asyncio.Protocol):
 			if data.startswith(FLAG_READ):
 				flag_read = True
 				data = data[len(FLAG_READ):]
+			if data.startswith(FLAG_RESET):
+				flag_reset = True
+				data = data[len(FLAG_RESET):]
 
 			print("CLIENT -> SERVER")
 			print(f"{self.address} -> {TCP_IP}")
@@ -106,7 +118,8 @@ class TCPSerialBridge(asyncio.Protocol):
 				print(f"RAW: {response.hex()}")
 				self.transport.write(response)
 			
-			TCPSerialBridge.ser.write(DATA_READY)
+			if flag_reset:
+				self.reset_serial()
 			print()
 			print("----------------------------------------------")
 			print()

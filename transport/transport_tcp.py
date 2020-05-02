@@ -1,9 +1,5 @@
 import socket
-
-FLAG_CLOSE = b"CLOSE"
-FLAG_CONNECT = b"CONNECT"
-FLAG_HELLO = b"HELLO"
-FLAG_READ = b"READ"
+from transport.transport_common import *
 
 class TransportTCP():
 	
@@ -25,14 +21,13 @@ class TransportTCP():
 			return response
 		return bytes()
 	
-	def sendWithHello(self, data):
-		self.send(FLAG_HELLO + data)
-	
-	def sendWithHelloRead(self, data):
-		self.send(FLAG_HELLO + FLAG_READ + data)
-		response = self.read(2)
-		response += self.read(100)
-		return response
+	def sendWithFlags(self, flags, data):
+		self.send(b''.join(flags) + data)
+		
+		if FLAG_READ in flags:
+			response = self.read(100)
+			return response
+		return None
 		
 	def stop(self):
 		if self.s is not None:

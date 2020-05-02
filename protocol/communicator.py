@@ -1,3 +1,5 @@
+from transport.transport_common import *
+
 DATA_READY = b"\x10\x02"
 HEADER_OK = b"\x01\x00"
 HEADER_READ = b"\x01\x00"
@@ -41,23 +43,32 @@ class Communicator:
 	
 	def stop(self):
 		self.transport.stop()
-	
-	def readRegister(self, reg):
+		
+	def prepareReadRequest(self, reg):
 		request = self.checksum(reg) + reg
 		request = request.replace(b"\x10", b"\x10\x10")
 		request = request.replace(b"\x2b", b"\x2b\x18")
 		request = HEADER_READ + request + FOOTER
+		return request
+		
+	def prepareResponse(self, response):
+		response = response[len(DATA_READY + HEADER_OK):]
+		response = response[:-len(FOOTER)]
+		response = response.replace(b"\x10\10", b"\x10")
+		response = response.replace(b"\x2b\x18", b"\x2b")
+		return response
+		
+	def readRegister(self, reg, flags=[FLAG_HELLO, FLAG_READ]):
+		
+		request = self.prepareReadRequest(reg)
 		print(f"Sending: {request.hex()}")
 		
 		if self.transport is not None:
-			response = self.transport.sendWithHelloRead(request)
+			response = self.transport.sendWithFlags(flags, request)
 			
 			if response.startswith(DATA_READY + HEADER_OK) and response.endswith(FOOTER):
 				
-				response = response[len(DATA_READY + HEADER_OK):]
-				response = response[:-len(FOOTER)]
-				response = response.replace(b"\x10\10", b"\x10")
-				response = response.replace(b"\x2b\x18", b"\x2b")
+				response = prepareResponse(response)
 				
 				if(self.verifyRequest(request, response)):
 					if(self.verifyChecksum(response)):
@@ -65,6 +76,16 @@ class Communicator:
 						print(f"Response: {response.hex()}")
 						return response
 		return None
+
+	
+	def readRegisterBulk(self, regs):
+		responses = []
+		responses += readRegister(regs[0], [FLAG_HELLO, FLAG_READ, FLAG_RESET])
+		for reg in regs[1:]:
+			responses += readRegister(reg, FLAG_READ, FLAG_RESET)
+		
+		return responses
+			
 				
 			
 			
