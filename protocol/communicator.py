@@ -13,6 +13,12 @@ class Communicator:
 	def __init__(self, transport):
 		self.transport = transport
 		
+	def start(self):
+		self.transport.start()
+	
+	def stop(self):
+		self.transport.stop()
+		
 	def checksum(self, data):
 		checksum = 1
 		for i in range(0, len(data)):
@@ -38,12 +44,6 @@ class Communicator:
 			pass
 		return False
 		
-	def start(self):
-		self.transport.start()
-	
-	def stop(self):
-		self.transport.stop()
-		
 	def prepareReadRequest(self, reg):
 		request = self.checksum(reg) + reg
 		request = request.replace(b"\x10", b"\x10\x10")
@@ -68,7 +68,7 @@ class Communicator:
 			
 			if response.startswith(DATA_READY + HEADER_OK) and response.endswith(FOOTER):
 				
-				response = prepareResponse(response)
+				response = self.prepareResponse(response)
 				
 				if(self.verifyRequest(request, response)):
 					if(self.verifyChecksum(response)):
@@ -80,15 +80,12 @@ class Communicator:
 	
 	def readRegisterBulk(self, regs):
 		responses = []
-		responses += readRegister(regs[0], [FLAG_HELLO, FLAG_READ, FLAG_RESET])
+		responses.append(self.readRegister(regs[0], [FLAG_HELLO, FLAG_READ, FLAG_RESET]))
 		for reg in regs[1:]:
-			responses += readRegister(reg, FLAG_READ, FLAG_RESET)
+			responses.append(self.readRegister(reg, [FLAG_READ, FLAG_RESET]))
 		
 		return responses
 			
 				
-			
-			
-			
 	def writeRegister(self, reg, val):
 		pass

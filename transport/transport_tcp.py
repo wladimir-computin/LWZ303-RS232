@@ -25,7 +25,8 @@ class TransportTCP():
 		self.send(b''.join(flags) + data)
 		
 		if FLAG_READ in flags:
-			response = self.read(100)
+			response = self.read(2)
+			response += self.read(100)
 			return response
 		return None
 		
