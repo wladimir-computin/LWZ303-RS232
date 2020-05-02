@@ -105,6 +105,8 @@ class TCPSerialBridge(asyncio.Protocol):
 				print(f"{self.address} <- {TCP_IP}")
 				print(f"RAW: {response.hex()}")
 				self.transport.write(response)
+			
+			TCPSerialBridge.ser.write(DATA_READY)
 			print()
 			print("----------------------------------------------")
 			print()

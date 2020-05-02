@@ -21,7 +21,7 @@ class Communicator:
 	def verifyRequest(self, request, response):
 		try:
 			if request[len(HEADER_READ) + 1] == response[1]:
-				print("response matches request")
+				print(" response matches request")
 				return True
 		except:
 			pass
@@ -30,7 +30,7 @@ class Communicator:
 	def verifyChecksum(self, response):
 		try:
 			if self.checksum(response[1:]) == bytes([response[0]]):
-				print("checksum ok")
+				print(" checksum ok")
 				return True
 		except:
 			pass
