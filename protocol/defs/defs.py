@@ -121,3 +121,33 @@ class FixedPOneDec16():
 	
 	def __float__(self):
 		return self.value
+	
+	
+class FixedPTwoDec16():
+	value = 0
+
+	def __init__(self, data=None, value=None):
+		if data is not None:
+			start = data.bytepos
+			self.value = data.read("int:16") / 100
+			self.rawdata = data.bytes[start:data.bytepos]
+		else:
+			self.value = value
+			self.update()
+			
+	def update(self):
+		bits = BitStream()
+		bits.append(Bits(f"int:16={self.value*100:d}"))
+		self.rawdata = bits.bytes
+		
+	def update_recursive(self):
+		self.update()
+		
+	def toBytes(self):
+		return self.rawdata
+		
+	def __str__(self):
+		return f"{self.value}"
+	
+	def __float__(self):
+		return self.value
