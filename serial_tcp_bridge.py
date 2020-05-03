@@ -23,6 +23,7 @@ FLAG_RESET = b"RESET"
 
 class TCPSerialBridge(asyncio.Protocol):
 	ser = None
+	MAX_RETRIES = 5
 
 	def connect_serial(self, device=DEVICE, baud=BAUD):
 		if TCPSerialBridge.ser is None:
@@ -70,7 +71,7 @@ class TCPSerialBridge(asyncio.Protocol):
 		#self.close_serial()
 		pass
 
-	def data_received(self, data):
+	def data_received(self, data):		
 		try:
 			flag_open = False
 			flag_read = False

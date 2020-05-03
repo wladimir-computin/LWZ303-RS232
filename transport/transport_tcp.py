@@ -42,7 +42,7 @@ class TransportTCP():
 	def start(self):
 		self.stop()
 		self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		self.s.settimeout(5)
+		self.s.settimeout(2)
 		self.s.connect((self.ip, self.port))
 		self.send(FLAG_CONNECT)
 
