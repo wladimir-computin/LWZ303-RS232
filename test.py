@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from transport.transport_tcp import TransportTCP
 from protocol.communicator import Communicator
-from protocol.defs.defs2xx.defs2xx import *
+from protocol.defs.defs2x6.defs2x6 import *
 
 def main():
 	trans = TransportTCP("192.168.178.201", 7777)

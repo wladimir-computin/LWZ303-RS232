@@ -38,7 +38,7 @@ class Communicator:
 				return False
 		except:
 			pass
-		printf(f" request error!")
+		print(f" request error!")
 		return False
 	
 	def verifyChecksum(self, response):
@@ -52,7 +52,7 @@ class Communicator:
 				return False
 		except:
 			pass
-		printf(f" checksum error!")
+		print(f" checksum error!")
 		return False
 		
 	def prepareReadRequest(self, reg):
