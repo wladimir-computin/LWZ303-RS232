@@ -2,7 +2,7 @@ from protocol.defs.defs import InformationGroup
 from protocol.defs.defs2x6.parameters import *
 
 	
-class PFanGroup(InformationGroup):
+class pFanGroup(InformationGroup):
 	name = "P_FanGroup"
 	description = "Fan Parameters"
 	command = b"\x01"
@@ -10,46 +10,47 @@ class PFanGroup(InformationGroup):
 	values = {}
 	
 	
-class PDefrostEvaGroup(InformationGroup):
+class pDefrostEvaGroup(InformationGroup):
 	name = "P_DefrostEvaGroup"
 	description = "Defrost Evaporator Parameters"
 	command = b"\x03"
-	parsemap = []
+	parsemap = [pUpTempLimitDefrostEvaporatorEnd, pMaxTimeDefrostEvaporator, pLimitTempCondenserElectBoost, pLimitTempCondenserDefrostTerm, p47CompressorRestartDelay, p48MainFanSpeed]
 	values = {}
 
 
-class PDefrostAAGroup(InformationGroup):
+class pDefrostAAGroup(InformationGroup):
 	name = "P_DefrostAAGroup"
 	description = "Defrost AA Parameters"
 	command = b"\x04"
-	parsemap = []
+	parsemap = [pMaxDefrostDurationAAExchanger, pDefrostStartThreshold, pVolumeFlowFilterReplacement]
 	values = {}
 	
 
-class PHeat1Group(InformationGroup):
+class pHeat1Group(InformationGroup):
 	name = "P_Heat1Group"
 	description = "Heat1 Parameters"
 	command = b"\x05"
-	parsemap = []
+	parsemap = [p13GradientHC1, p14LowEndHC1, p15RoomInfluenceHC1, p16GradientHC2, p17LowEndHC2, p18RoomInfluenceHC2, p19LowEndHC2, p20LowEndHC2, pMaxSetHeatFlowTempHC1, pMinSetHeatFlowTempHC1, pMaxSetHeatFlowTempHC2, pMinSetHeatFlowTempHC2]
 	values = {}
 
 
-class PHeat2Group(InformationGroup):
+class pHeat2Group(InformationGroup):
 	name = "P_Heat2Group"
 	description = "Heat2 Parameters"
 	command = b"\x06"
-	parsemap = []
+	parsemap = [p21Hyst1, p22Hyst2, p23Hyst3, p24Hyst4, p25Hyst5, p26Hyst6, p27Hyst7, p28Hyst8, p29HystAsymmetry, p30integralComponent, p31MaxBoostStages, pMaxHeatFlowTemp, p78DualModePoint, p79BoosterTimeoutHC]
 	values = {}
 	
 
-class PDHWGroup(InformationGroup):
+class pDHWGroup(InformationGroup):
 	name = "P_DHWGroup"
 	description = "DHW Parameters"
 	command = b"\x07"
-	parsemap = []
+	parsemap = [p32HystDHW, p33BoosterTimeoutDHW, p34TempLimitBoostDHW, p35PasteurisationInterval, p36MaxDurationDHWLoad, pPasteurisationTemp, pMaxBoostStagesDHW, p84DHWTempSolarMode]
 	values = {}
 
-class PSolarGroup(InformationGroup):
+
+class pSolarGroup(InformationGroup):
 	name = "P_SolarGroup"
 	description = "Solar Parameters"
 	command = b"\x08"
@@ -57,23 +58,23 @@ class PSolarGroup(InformationGroup):
 	values = {}
 	
 
-class SHistoryGroup(InformationGroup):
+class sHistoryGroup(InformationGroup):
 	name = "S_HistoryGroup"
 	description = "History Status"
 	command = b"\x09"
-	parsemap = []
+	parsemap = [sOperatingHours1, sOperatingHours2, sHeatingHours, sDHWhours, sCoolingHours]
 	values = {}
 
 
-class PCircPumpGroup(InformationGroup):
+class pCircPumpGroup(InformationGroup):
 	name = "P_CircPumpGroup"
 	description = "CircPump Parameters"
 	command = b"\x0A"
-	parsemap = []
+	parsemap = [p54MinPumpCycles, p55MaxPumpCycles, p56OutTempMaxPumpCycles, p57OutTempMinPumpCycles, p58SuppressTempCaptPumpStart]
 	values = {}
 	
 	
-class PHeatProgGroup(InformationGroup):
+class pHeatProgGroup(InformationGroup):
 	name = "P_HeatProgGroup"
 	description = "Heat Program Parameters"
 	command = b"\x0B"
@@ -81,7 +82,7 @@ class PHeatProgGroup(InformationGroup):
 	values = {}
 	
 	
-class PDHWProgGroup(InformationGroup):
+class pDHWProgGroup(InformationGroup):
 	name = "P_DHWProgGroup"
 	description = "Hot Water Program Parameters"
 	command = b"\x0C"
@@ -89,7 +90,7 @@ class PDHWProgGroup(InformationGroup):
 	values = {}
 	
 
-class PFanProgGroup(InformationGroup):
+class pFanProgGroup(InformationGroup):
 	name = "P_FanProgGroup"
 	description = "Fan Program Parameters"
 	command = b"\x0D"
@@ -97,15 +98,15 @@ class PFanProgGroup(InformationGroup):
 	values = {}
 	
 	
-class PRestartGroup(InformationGroup):
+class pRestartGroup(InformationGroup):
 	name = "P_RestartGroup"
 	description = "Restart Parameters"
 	command = b"\x0E"
-	parsemap = []
+	parsemap = [p59RestartBeforeSetbackEnd]
 	values = {}
 	
 
-class PAbsenceGroup(InformationGroup):
+class pAbsenceGroup(InformationGroup):
 	name = "P_AbsenceGroup"
 	description = "Absence Parameters"
 	command = b"\x0F"
@@ -113,31 +114,31 @@ class PAbsenceGroup(InformationGroup):
 	values = {}
 	
 
-class PDryHeatGroup(InformationGroup):
+class pDryHeatGroup(InformationGroup):
 	name = "P_DryHeatGroup"
 	description = "DryHeat Parameters"
 	command = b"\x10"
-	parsemap = []
+	parsemap = [p70StartDryHeat, p71BaseTemp, p72PeakTemp, p73TempDuration, p74TempIncrease]
 	values = {}
 	
 
-class SSolarGroup(InformationGroup):
+class sSolarGroup(InformationGroup):
 	name = "S_SolarGroup"
 	description = "Solar Status"
 	command = b"\x16"
-	parsemap = [SCollectorTemp, SDHWTemp, SFlowTemp, SedSolPump]
+	parsemap = [sCollectorTemp, sDHWTemp, sFlowTemp, sEdSolPump]
 	values = {}
 	
 	
-class PP01P12Group(InformationGroup):
+class pP01P12Group(InformationGroup):
 	name = "P_P01-P12Group"
 	description = "P01-P12 Parameters"
 	command = b"\x17"
-	parsemap = []
+	parsemap = [p01RoomTempDay, p02RoomTempNight, p03RoomTempStandby, p04DHWsetTempDay, p05DHWsetTempNight, p06DHWsetTempStandby, p07FanStageDay, p08FanStageNight, p09FanStageStandby, p10HCTempManual, p11DHWsetTempManual, p12FanStageManual]
 	values = {}
 	
 	
-class SProgramGroup(InformationGroup):
+class sProgramGroup(InformationGroup):
 	name = "S_ProgramGroup"
 	description = "Program Status"
 	command = b"\xEE"
@@ -145,23 +146,23 @@ class SProgramGroup(InformationGroup):
 	values = {}
 	
 	
-class SFanGroup(InformationGroup):
+class sFanGroup(InformationGroup):
 	name = "S_FanGroup"
 	description = "Fan Status"
 	command = b"\xE8"
-	parsemap = [SAutoFanCalib, "pad:64", SAirflowTolerance, SInputFanSpeedCal, SOutputFanSpeedCal, SInputFanAirflowCal, SOutputFanAirflowCal, SInputFanSpeed0, SOutputFanSpeed0, SInputFanSpeed200, SOutputFanSpeed200, SAirflowCalibrationInterval, STimeToCalibration, SInputFanSpeed, SOutputFanSpeed, SInputFanAirflowSet, SOutputFanAirflowSet, SInputFanSpeedTarget, SOutputFanSpeedTarget]
+	parsemap = [sAutoFanCalib, "pad:64", sAirflowTolerance, sInputFanSpeedCal, sOutputFanSpeedCal, sInputFanAirflowCal, sOutputFanAirflowCal, sInputFanSpeed0, sOutputFanSpeed0, sInputFanSpeed200, sOutputFanSpeed200, sAirflowCalibrationInterval, sTimeToCalibration, sInputFanSpeed, sOutputFanSpeed, sInputFanAirflowSet, sOutputFanAirflowSet, sInputFanSpeedTarget, sOutputFanSpeedTarget]
 	values = {}
 	
 	
-class SLast10errorsGroup(InformationGroup):
-	name = "S_Last10errorsGroup"
+class sLast10ErrorsGroup(InformationGroup):
+	name = "S_Last10ErrorsGroup"
 	description = "Last 10 Errors"
 	command = b"\xD1"
-	parsemap = []
+	parsemap = [sNumberErrors, sError1, sError2, sError3, sError4, sError5]
 	values = {}
 	
 	
-class SControlGroup(InformationGroup):
+class sControlGroup(InformationGroup):
 	name = "S_ControlGroup"
 	description = "Control Status"
 	command = b"\xF2"
@@ -169,15 +170,15 @@ class SControlGroup(InformationGroup):
 	values = {}
 	
 	
-class SDHWGroup(InformationGroup):
+class sDHWGroup(InformationGroup):
 	name = "S_DHW"
 	description = "Hot Water Status"
 	command = b"\xF3"
-	parsemap = [SDHWTemp, SOutsideTemp, PDHWTemp, SCompBlockTimeTemp]
+	parsemap = [sDHWTemp, sOutsideTemp, sDHWTemp, sCompBlockTimeTemp]
 	values = {}
 	
 	
-class SHC1Group(InformationGroup):
+class sHC1Group(InformationGroup):
 	name = "S_HC1"
 	description = "Heat Circle 1 Status"
 	command = b"\xF4"
@@ -185,7 +186,7 @@ class SHC1Group(InformationGroup):
 	values = {}
 	
 	
-class SHC2Group(InformationGroup):
+class sHC2Group(InformationGroup):
 	name = "S_HC2"
 	description = "Heat Circle 2 Status"
 	command = b"\xF5"
@@ -193,33 +194,33 @@ class SHC2Group(InformationGroup):
 	values = {}
 	
 	
-class SSystemGroup(InformationGroup):
+class sSystemGroup(InformationGroup):
 	name = "S_System"
 	description = "System Status"
 	command = b"\xF6"
-	parsemap = []
+	parsemap = [sUserSetFanStage, sUserSetFanRemainingTime, sError1]
 	values = {}
 	
 	
-class SGlobalGroup(InformationGroup):
+class sGlobalGroup(InformationGroup):
 	name = "S_GlobalGroup"
 	description = "Global Status"
 	command = b"\xFB"
-	parsemap = [SCollectorTemp, SOutsideTemp, SFlowTempHC1, SReturnTemp, SOHotGasTemp, SDHWTemp, SFlowTempHC2, SInsideTemp, SEvaporatorTemp, SCondensorTemp, "pad:16", SOutputVentilatorPower, SInputVentilatorPower, SMainVentilatorPower, "pad:8", SOutputVentilatorSpeed, SInputVentilatorSpeed, SMainVentilatorSpeed, SOutsideTempFiltered, SRelHumidity, SDewPoint, "pad:16", ]
+	parsemap = [sCollectorTemp, sOutsideTemp, sFlowTempHC1, sReturnTemp, sOHotGasTemp, sDHWTemp, sFlowTempHC2, sInsideTemp, sEvaporatorTemp, sCondensorTemp, "pad:16", sOutputVentilatorPower, sInputVentilatorPower, sMainVentilatorPower, "pad:8", sOutputVentilatorSpeed, sInputVentilatorSpeed, sMainVentilatorSpeed, sOutsideTempFiltered, sRelHumidity, sDewPoint, "pad:16", ]
 	values = {}	
 	
 	
-class PTimedateGroup(InformationGroup):
+class pTimedateGroup(InformationGroup):
 	name = "P_Timedate"
 	description = "Timedate Parameter"
 	command = b"\xFC"
-	parsemap = ["pad:8", SWeekDay, PClockHour, PClockMinutes, SClockSeconds, PClockYear, "pad:8", PClockMonth, PClockDay]
+	parsemap = ["pad:8",sWeekDay, pClockHour, pClockMinutes, pClockSeconds, pClockYear, "pad:8", pClockMonth, pClockDay]
 	values = {}
 	
 	
-class SFirmwareGroup(InformationGroup):
+class sFirmwareGroup(InformationGroup):
 	name = "S_FirmwareGroup"
 	description = "Firmware Status"
 	command = b"\xFD"
-	parsemap = [SFirmVersion]
+	parsemap = [sFirmVersion]
 	values = {}

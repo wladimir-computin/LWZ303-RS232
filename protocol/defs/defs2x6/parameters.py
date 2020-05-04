@@ -1,5 +1,255 @@
 from protocol.defs.defs import *
 
+class p01RoomTempDay(InformationObj):
+	name = "p01RoomTempDay"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class p02RoomTempNight(InformationObj):
+	name = "p02RoomTempNight"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class p03RoomTempStandby(InformationObj):
+	name = "p03RoomTempStandby"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class p04DHWsetTempDay(InformationObj):
+	name = "p04DHWsetTempDay"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class p05DHWsetTempNight(InformationObj):
+	name = "p05DHWsetTempNight"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class p06DHWsetTempStandby(InformationObj):
+	name = "p06DHWsetTempStandby"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class p07FanStageDay(InformationObj):
+	name = "p07FanStageDay"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	
+class p08FanStageNight(InformationObj):
+	name = "p08FanStageNight"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	
+class p09FanStageStandby(InformationObj):
+	name = "p09FanStageStandby"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	
+class p10HCTempManual(InformationObj):
+	name = "p10HCTempManual"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class p11DHWsetTempManual(InformationObj):
+	name = "p11DHWsetTempManual"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class p12FanStageManual(InformationObj):
+	name = "p12FanStageManual"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	unit = "°C"
+	
+class p13GradientHC1(InformationObj):
+	name = "p13GradientHC1"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	
+class p14LowEndHC1(InformationObj):
+	name = "p14LowEndHC1"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "K"
+	
+class p15RoomInfluenceHC1(InformationObj):
+	name = "p15RoomInfluenceHC1"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	unit = "%"
+	
+class p16GradientHC2(InformationObj):
+	name = "p16GradientHC2"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	
+class p17LowEndHC2(InformationObj):
+	name = "p17LowEndHC2"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "K"
+	
+class p18RoomInfluenceHC2(InformationObj):
+	name = "p18RoomInfluenceHC2"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	unit = "%"
+	
+class p19LowEndHC2(InformationObj):
+	name = "p19LowEndHC2"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "K"
+	
+class p20LowEndHC2(InformationObj):
+	name = "p20LowEndHC2"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "K"
+	
+class pMaxSetHeatFlowTempHC1(InformationObj):
+	name = "pMaxSetHeatFlowTempHC1"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class pMinSetHeatFlowTempHC1(InformationObj):
+	name = "pMinSetHeatFlowTempHC1"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class pMaxSetHeatFlowTempHC2(InformationObj):
+	name = "pMaxSetHeatFlowTempHC1"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class pMinSetHeatFlowTempHC2(InformationObj):
+	name = "pMinSetHeatFlowTempHC1"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class pMaxHeatFlowTemp(InformationObj):
+	name = "pMaxHeatFlowTemp"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class p21Hyst1(InformationObj):
+	name = "p21Hyst1"
+	description = ""
+	parsemap = {"val":FixedPOneDec8}
+	unit = "K"
+	
+class p22Hyst2(InformationObj):
+	name = "p22Hyst2"
+	description = ""
+	parsemap = {"val":FixedPOneDec8}
+	unit = "K"
+	
+class p23Hyst3(InformationObj):
+	name = "p23Hyst3"
+	description = ""
+	parsemap = {"val":FixedPOneDec8}
+	unit = "K"
+	
+class p24Hyst4(InformationObj):
+	name = "p21Hyst4"
+	description = ""
+	parsemap = {"val":FixedPOneDec8}
+	unit = "K"
+	
+class p25Hyst5(InformationObj):
+	name = "p22Hyst5"
+	description = ""
+	parsemap = {"val":FixedPOneDec8}
+	unit = "K"
+	
+class p26Hyst6(InformationObj):
+	name = "p23Hyst6"
+	description = ""
+	parsemap = {"val":FixedPOneDec8}
+	unit = "K"
+	
+class p27Hyst7(InformationObj):
+	name = "p23Hyst7"
+	description = ""
+	parsemap = {"val":FixedPOneDec8}
+	unit = "K"
+
+class p28Hyst8(InformationObj):
+	name = "p23Hyst8"
+	description = ""
+	parsemap = {"val":FixedPOneDec8}
+	unit = "K"
+	
+class p29HystAsymmetry(InformationObj):
+	name = "p29HystAsymmetry"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	unit = "K"
+	
+class p30integralComponent(InformationObj):
+	name = "p30integralComponent"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	
+class p31MaxBoostStages(InformationObj):
+	name = "p31MaxBoostStages"
+	description = ""
+	parsemap = {"val":"uint:8"}
+
+class p32HystDHW(InformationObj):
+	name = "p32HystDHW"
+	description = ""
+	parsemap = {"val":FixedPOneDec8}
+	unit = "K"
+	
+class p33BoosterTimeoutDHW(InformationObj):
+	name = "p33BoosterTimeoutDHW"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	unit = "min"
+	
+class p34TempLimitBoostDHW(InformationObj):
+	name = "p34TempLimitBoostDHW"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = ""
+	
+class p35PasteurisationInterval(InformationObj):
+	name = "p35PasteurisationInterval"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	unit = ""
+	
+class p36MaxDurationDHWLoad(InformationObj):
+	name = "p36MaxDurationDHWLoad"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	unit = ""
+	
+class pPasteurisationTemp(InformationObj):
+	name = "pPasteurisationTemp"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	unit = "°C"
+	
+class pMaxBoostStagesDHW(InformationObj):
+	name = "pMaxBoostStagesDHW"
+	description = ""
+	parsemap = {"val":"uint:8"}
+
 class p37Fanstage1AirflowInlet(InformationObj):
 	name = "p37Fanstage1AirflowInlet"
 	description = ""
@@ -50,10 +300,141 @@ class p46UnschedVent0(InformationObj):
 	description = ""
 	parsemap = {"val":"uint:16"}
 	
+class pUpTempLimitDefrostEvaporatorEnd(InformationObj):
+	name = "pUpTempLimitDefrostEvaporatorEnd"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	
+class pMaxTimeDefrostEvaporator(InformationObj):
+	name = "pMaxTimeDefrostEvaporator"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	
+class pLimitTempCondenserElectBoost(InformationObj):
+	name = "pLimitTempCondenserElectBoost"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	
+class pLimitTempCondenserDefrostTerm(InformationObj):
+	name = "pLimitTempCondenserDefrostTerm"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	
+class p47CompressorRestartDelay(InformationObj):
+	name = "p47CompressorRestartDelay"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	unit = "min"
+	
+class p48MainFanSpeed(InformationObj):
+	name = "p48MainFanSpeed"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	unit = "%"
+	
+class pMaxDefrostDurationAAExchanger(InformationObj):
+	name = "pMaxDefrostDurationAAExchanger"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	
+class pDefrostStartThreshold(InformationObj):
+	name = "pDefrostStartThreshold"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	
+class pVolumeFlowFilterReplacement(InformationObj):
+	name = "pVolumeFlowFilterReplacement"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	
+class p49SummerModeTemp(InformationObj):
+	name = "p49SummerModeTemp"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class p50SummerModeHysteresis(InformationObj):
+	name = "p50SummerModeHysteresis"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "K"
+	
+class p54MinPumpCycles(InformationObj):
+	name = "p54MinPumpCycles"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	
+class p55MaxPumpCycles(InformationObj):
+	name = "p55MaxPumpCycles"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	
+class p56OutTempMaxPumpCycles(InformationObj):
+	name = "p56OutTempMaxPumpCycles"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	
+class p57OutTempMinPumpCycles(InformationObj):
+	name = "p57OutTempMinPumpCycles"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	
+class p58SuppressTempCaptPumpStart(InformationObj):
+	name = "p58SuppressTempCaptPumpStart"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	
+class p59RestartBeforeSetbackEnd(InformationObj):
+	name = "p59RestartBeforeSetbackEnd"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	
+class p70StartDryHeat(InformationObj):
+	name = "p70StartDryHeat"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	
+class p71BaseTemp(InformationObj):
+	name = "p71BaseTemp"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class p72PeakTemp(InformationObj):
+	name = "p72PeakTemp"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class p73TempDuration(InformationObj):
+	name = "p73TempDuration"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	
+class p74TempIncrease(InformationObj):
+	name = "p74TempIncrease"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	
 class p75PassiveCooling(InformationObj):
 	name = "p75PassiveCooling"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	
+class p77OutTempFilterTime(InformationObj):
+	name = "p77OutTempFilterTime"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	
+class p78DualModePoint(InformationObj):
+	name = "p78DualModePoint"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	
+class p79BoosterTimeoutHC(InformationObj):
+	name = "p79BoosterTimeoutHC"
+	description = ""
+	parsemap = {"val":"uint:8"}	 
 	
 class p80EnableSolar(InformationObj):
 	name = "p80EnableSolar"
@@ -88,161 +469,185 @@ class CollectLimitTempSolar(InformationObj):
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class SCollectorTemp(InformationObj):
-	name = "S_CollectorTemp"
+class sCollectorTemp(InformationObj):
+	name = "sCollectorTemp"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class SDHWTemp(InformationObj):
-	name = "S_DHWTemp"
+class sDHWTemp(InformationObj):
+	name = "sDHWTemp"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class SFlowTemp(InformationObj):
-	name = "S_FlowTemp"
+class sFlowTemp(InformationObj):
+	name = "sFlowTemp"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class SedSolPump(InformationObj):
-	name = "S_edSolPump"
+class sEdSolPump(InformationObj):
+	name = "sEdSolPump"
 	description = ""
 	parsemap = {"val":"int:8"}
 	unit = "%"
 	
-class SAutoFanCalib(InformationObj):
-	name = "S_AutoFanCalib"
+class sAutoFanCalib(InformationObj):
+	name = "sAutoFanCalib"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = ""
 	
-class SInputFanSpeedCal(InformationObj):
-	name = "S_InputFanSpeedCal"
+class sInputFanSpeedCal(InformationObj):
+	name = "sInputFanSpeedCal"
 	description = ""
 	parsemap = {"val":"uint:16"}
 	unit = ""	
 
-class SOutputFanSpeedCal(InformationObj):
-	name = "S_OutputFanSpeedCal"
+class sOutputFanSpeedCal(InformationObj):
+	name = "sOutputFanSpeedCal"
 	description = ""
 	parsemap = {"val":"uint:16"}
 	unit = ""
 	
-class SInputFanAirflowCal(InformationObj):
-	name = "S_InputFanAirflowCal"
+class sInputFanAirflowCal(InformationObj):
+	name = "sInputFanAirflowCal"
 	description = ""
 	parsemap = {"val":"uint:16"}
 	unit = "m3/h"	
 
-class SOutputFanAirflowCal(InformationObj):
-	name = "S_OutputFanAirflowCal"
+class sOutputFanAirflowCal(InformationObj):
+	name = "sOutputFanAirflowCal"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = "m3/h"
 	
-class SInputFanSpeed(InformationObj):
-	name = "S_InputFanSpeed"
+class sInputFanSpeed(InformationObj):
+	name = "sInputFanSpeed"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = "rps"	
 
-class SOutputFanSpeed(InformationObj):
-	name = "S_OutputFanSpeed"
+class sOutputFanSpeed(InformationObj):
+	name = "sOutputFanSpeed"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = "rps"
 	
-class SInputFanAirflowSet(InformationObj):
-	name = "S_InputFanAirflowSet"
+class sInputFanAirflowSet(InformationObj):
+	name = "sInputFanAirflowSet"
 	description = ""
 	parsemap = {"val":"uint:16"}
 	unit = "m3/h"	
 
-class SOutputFanAirflowSet(InformationObj):
-	name = "S_OutputFanAirflowSet"
+class sOutputFanAirflowSet(InformationObj):
+	name = "sOutputFanAirflowSet"
 	description = ""
 	parsemap = {"val":"uint:16"}
 	unit = "m3/h"
 	
-class SInputFanSpeedTarget(InformationObj):
-	name = "S_InputFanSpeedTarget"
+class sInputFanSpeedTarget(InformationObj):
+	name = "sInputFanSpeedTarget"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = "%"
 
-class SOutputFanSpeedTarget(InformationObj):
-	name = "S_OutputFanSpeedTarget"
+class sOutputFanSpeedTarget(InformationObj):
+	name = "sOutputFanSpeedTarget"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = "%"
 	
-class SInputFanSpeed0(InformationObj):
-	name = "S_InputFanSpeed0"
+class sInputFanSpeed0(InformationObj):
+	name = "sInputFanSpeed0"
 	description = ""
 	parsemap = {"val":"uint:16"}
 	unit = "rps"	
 
-class SOutputFanSpeed0(InformationObj):
-	name = "S_OutputFanSpeed0"
+class sOutputFanSpeed0(InformationObj):
+	name = "sOutputFanSpeed0"
 	description = ""
 	parsemap = {"val":"uint:16"}
 	unit = "rps"
 	
-class SInputFanSpeed200(InformationObj):
-	name = "S_InputFanSpeed200"
+class sInputFanSpeed200(InformationObj):
+	name = "sInputFanSpeed200"
 	description = ""
 	parsemap = {"val":"uint:16"}
 	unit = "rps"	
 
-class SOutputFanSpeed200(InformationObj):
-	name = "S_OutputFanSpeed200"
+class sOutputFanSpeed200(InformationObj):
+	name = "sOutputFanSpeed200"
 	description = ""
 	parsemap = {"val":"uint:16"}
 	unit = "rps"
 	
-class SAirflowTolerance(InformationObj):
-	name = "S_AirflowTolerance"
+class sAirflowTolerance(InformationObj):
+	name = "sAirflowTolerance"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = ""
 	
-class SAirflowCalibrationInterval(InformationObj):
-	name = "S_AirflowCalibrationInterval"
+class sAirflowCalibrationInterval(InformationObj):
+	name = "sAirflowCalibrationInterval"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = ""	
 
-class STimeToCalibration(InformationObj):
-	name = "S_TimeToCalibration"
+class sTimeToCalibration(InformationObj):
+	name = "sTimeToCalibration"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = ""
 	
-class SOutsideTemp(InformationObj):
-	name = "S_OutsideTemp"
+class sOutsideTemp(InformationObj):
+	name = "sOutsideTemp"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class PDHWTemp(InformationObj):
-	name = "P_DHWTemp"
+class sDHWTemp(InformationObj):
+	name = "sDHWTemp"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class SCompBlockTimeTemp(InformationObj):
-	name = "S_CompBlockTimeTemp"
+class sCompBlockTimeTemp(InformationObj):
+	name = "sCompBlockTimeTemp"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = ""
 	
-class PDHWHysteresis(InformationObj):
-	name = "P_DHWHysteresis"
+class sOperatingHours1(InformationObj):
+	name = "sOperatingHours1"
 	description = ""
-	parsemap = {"val":"uint:8"}
-	unit = "K"
+	parsemap = {"val":"uint:16"}
+	unit = ""
+	
+class sOperatingHours2(InformationObj):
+	name = "sOperatingHours2"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	unit = ""
+	
+class sHeatingHours(InformationObj):
+	name = "sHeatingHours"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	unit = ""
+	
+class sDHWhours(InformationObj):
+	name = "sDHWhours"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	unit = ""
+	
+class sCoolingHours(InformationObj):
+	name = "sCoolingHours"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	unit = ""
 	
 '''
 "FBglob206" => [["outsideTemp: ", 8, 4, "hex2int", 10],	[" flowTemp: ",		        12, 4, "hex2int", 10],
@@ -267,149 +672,250 @@ class PDHWHysteresis(InformationObj):
 	      [" collectorTemp: ",	    4,  4, "hex2int", 10],	[" insideTemp: ",		    32, 4, "hex2int", 10] 
 '''
 	
-class SFlowTempHC1(InformationObj):
-	name = "S_FlowTempHC1"
+class sFlowTempHC1(InformationObj):
+	name = "sFlowTempHC1"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class SReturnTemp(InformationObj):
-	name = "S_ReturnTemp"
+class sReturnTemp(InformationObj):
+	name = "sReturnTemp"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class SOHotGasTemp(InformationObj):
-	name = "S_HotGasTemp"
+class sOHotGasTemp(InformationObj):
+	name = "sOHotGasTemp"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class SDHWTemp(InformationObj):
-	name = "S_DHWTemp"
+class sDHWTemp(InformationObj):
+	name = "sDHWTemp"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class SFlowTempHC2(InformationObj):
-	name = "S_FlowTempHC2"
+class sFlowTempHC2(InformationObj):
+	name = "sFlowTempHC2"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class SInsideTemp(InformationObj):
-	name = "S_InsideTemp"
+class sInsideTemp(InformationObj):
+	name = "sInsideTemp"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class SEvaporatorTemp(InformationObj):
-	name = "S_EvaporatorTemp"
+class sEvaporatorTemp(InformationObj):
+	name = "sEvaporatorTemp"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class SCondensorTemp(InformationObj):
-	name = "S_CondesorTemp"
+class sCondensorTemp(InformationObj):
+	name = "sCondensorTemp"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class SMixerOpen(InformationObj):
-	name = "S_MixerOpen"
+class sMixerOpen(InformationObj):
+	name = "sMixerOpen"
 	description = ""
 	parsemap = {"val":"bool"}
 	
-class SOutputVentilatorPower(InformationObj):
-	name = "S_OutputVentilatorPower"
+class sOutputVentilatorPower(InformationObj):
+	name = "sOutputVentilatorPower"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = "%"
 
-class SInputVentilatorPower(InformationObj):
-	name = "S_InputVentilatorPower"
+class sInputVentilatorPower(InformationObj):
+	name = "sInputVentilatorPower"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = "%"
 
-class SMainVentilatorPower(InformationObj):
-	name = "S_MainVentilatorPower"
+class sMainVentilatorPower(InformationObj):
+	name = "sMainVentilatorPower"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = "%"
 
-class SOutputVentilatorSpeed(InformationObj):
-	name = "S_OutputVentilatorSpeed"
+class sOutputVentilatorSpeed(InformationObj):
+	name = "sOutputVentilatorSpeed"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = "rps"
 
-class SInputVentilatorSpeed(InformationObj):
-	name = "S_InputVentilatorSpeed"
+class sInputVentilatorSpeed(InformationObj):
+	name = "sInputVentilatorSpeed"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = "rps"
 
-class SMainVentilatorSpeed(InformationObj):
-	name = "S_MainVentilatorSpeed"
+class sMainVentilatorSpeed(InformationObj):
+	name = "sMainVentilatorSpeed"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = "rps"
 	
-class SOutsideTempFiltered(InformationObj):
-	name = "S_OutsideTempFiltered"
+class sOutsideTempFiltered(InformationObj):
+	name = "sOutsideTempFiltered"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class SRelHumidity(InformationObj):
-	name = "S_RelHumidity"
+class sRelHumidity(InformationObj):
+	name = "sRelHumidity"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "%"
 	
-class SDewPoint(InformationObj):
-	name = "S_DewPoint"
+class sDewPoint(InformationObj):
+	name = "sDewPoint"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class SWeekDay(InformationObj):
-	name = "S_WeekDay"
+class sUserSetFanStage(InformationObj):
+	name = "sUserSetFanStage"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	
+class sUserSetFanRemainingTime(InformationObj):
+	name = "sUserSetFanRemainingTime"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	unit = "min"
+
+class sNumberErrors(InformationObj):
+	name = "sNumberErrors"
+	description = ""
+	parsemap = {"val":"uint:8"}
+
+class sError(InformationObj):
+	name = "sError"
+	description = ""
+	parsemap = {"error":Error, "time":Time16, "date":Date16}
+	values = {}
+	
+	def __init__(self, data=None, value=None):
+		self.unparsed = bytes()
+		if data is not None:
+			start = data.bytepos
+			for k,v in self.parsemap.items():
+				if isinstance(v, str):
+					self.values[k] = data.read(v)
+				else:
+					self.values[k] = v(data)
+			self.rawdata = data.bytes[start:data.bytepos]
+		else:
+			if value >= self.val_min and value <= self.val_max:
+				self.value = value
+				self.update()
+
+	def update(self):
+		bits = BitStream()
+		for k,v in self.parsemap.items():
+			if isinstance(v, str):
+				bits.append(Bits(f"{v}={self.values[k]}"))
+			else:
+				bits.append(Bits(bytes=self.values[k].toBytes()))
+		self.rawdata = bits.bytes
+
+	def update_recursive(self):
+		for k,v in self.parsemap.items():
+			if not isinstance(v, str):
+				self.values[k].update_recursive()
+		self.update()
+		
+	def toBytes(self):
+		return self.rawdata
+
+	def __str__(self):
+		out = ""
+		for k,v in self.values.items():
+			out += f" {k}: {v}\n" 
+		return f"{self.name}:\n{out}"
+	
+class sError1(sError):
+	name = "sError1"
+	values = {}
+	
+class sError2(sError):
+	name = "sError2"
+	values = {}
+	
+class sError3(sError):
+	name = "sError3"
+	values = {}
+	
+class sError4(sError):
+	name = "sError4"
+	values = {}
+	
+class sError5(sError):
+	name = "sError5"
+	values = {}
+	
+class sError6(sError):
+	name = "sError7"
+	values = {}
+	
+class sError7(sError):
+	name = "sError7"
+	values = {}
+	
+class sError8(sError):
+	name = "sError8"
+	values = {}
+	
+class sError9(sError):
+	name = "sError9"
+	values = {}
+	
+class sError10(sError):
+	name = "sError10"
+	values = {}
+	
+class sWeekDay(InformationObj):
+	name = "sWeekDay"
 	description = "Day of the Week"
 	parsemap = {"val":"uint:8"}
 	
-class PClockHour(InformationObj):
-	name = "P_ClockHour"
+class pClockHour(InformationObj):
+	name = "pClockHour"
 	description = "Clock (Hour)"
 	parsemap = {"val":"uint:8"}
 	
-class PClockMinutes(InformationObj):
-	name = "P_ClockMinutes"
+class pClockMinutes(InformationObj):
+	name = "pClockMinutes"
 	description = "Clock (Minutes)"
 	parsemap = {"val":"uint:8"}
 	
-class SClockSeconds(InformationObj):
-	name = "S_ClockSeconds"
+class pClockSeconds(InformationObj):
+	name = "pClockSeconds"
 	description = "Clock (Seconds)"
 	parsemap = {"val":"uint:8"}
 	
-class PClockYear(InformationObj):
-	name = "P_ClockYear"
+class pClockYear(InformationObj):
+	name = "pClockYear"
 	description = "Clock (Year)"
 	parsemap = {"val":"uint:8"}
 	
-class PClockMonth(InformationObj):
-	name = "P_ClockMonth"
+class pClockMonth(InformationObj):
+	name = "pClockMonth"
 	description = "Clock (Month)"
 	parsemap = {"val":"uint:8"}
 	
-class PClockDay(InformationObj):
-	name = "P_ClockDay"
+class pClockDay(InformationObj):
+	name = "pClockDay"
 	description = "Clock (Day)"
 	parsemap = {"val":"uint:8"}
 	
-class SFirmVersion(InformationObj):
-	name = "S_FirmVersion"
+class sFirmVersion(InformationObj):
+	name = "sFirmVersion"
 	description = "Firmware Version"
 	parsemap = {"val":FixedPTwoDec16}
