@@ -62,7 +62,7 @@ class sHistoryGroup(InformationGroup):
 	name = "S_HistoryGroup"
 	description = "History Status"
 	command = b"\x09"
-	parsemap = [sOperatingHours1, sOperatingHours2, sHeatingHours, sDHWhours, sCoolingHours]
+	parsemap = [sOperatingHours1, sOperatingHours2, sHeatingHours, sDhwHours, sCoolingHours]
 	values = {}
 
 
@@ -126,7 +126,7 @@ class sSolarGroup(InformationGroup):
 	name = "S_SolarGroup"
 	description = "Solar Status"
 	command = b"\x16"
-	parsemap = [sCollectorTemp, sDHWTemp, sFlowTemp, sEdSolPump]
+	parsemap = [sCollectorTemp, sDhwTemp, sFlowTemp, sEdSolPump]
 	values = {}
 	
 	
@@ -150,7 +150,7 @@ class sFanGroup(InformationGroup):
 	name = "S_FanGroup"
 	description = "Fan Status"
 	command = b"\xE8"
-	parsemap = [sAutoFanCalib, "pad:64", sAirflowTolerance, sInputFanSpeedCal, sOutputFanSpeedCal, sInputFanAirflowCal, sOutputFanAirflowCal, sInputFanSpeed0, sOutputFanSpeed0, sInputFanSpeed200, sOutputFanSpeed200, sAirflowCalibrationInterval, sTimeToCalibration, sInputFanSpeed, sOutputFanSpeed, sInputFanAirflowSet, sOutputFanAirflowSet, sInputFanSpeedTarget, sOutputFanSpeedTarget]
+	parsemap = [sAutoFanCalib, "bin:64", sAirflowTolerance, sInputFanSpeedCal, sOutputFanSpeedCal, sInputFanAirflowCal, sOutputFanAirflowCal, sInputFanSpeed0, sOutputFanSpeed0, sInputFanSpeed200, sOutputFanSpeed200, sAirflowCalibrationInterval, sTimeToCalibration, sInputFanSpeed, sOutputFanSpeed, sInputFanAirflowSet, sOutputFanAirflowSet, sInputFanSpeedTarget, sOutputFanSpeedTarget]
 	values = {}
 	
 	
@@ -166,15 +166,15 @@ class sControlGroup(InformationGroup):
 	name = "S_ControlGroup"
 	description = "Control Status"
 	command = b"\xF2"
-	parsemap = []
+	parsemap = [sHeatRequest, sHeatRequest, sHcStage, sDhwStage, sHeatStageControlModul, sCompBlockTime, sPasteurisationMode, sDefrostEvaporator, sBoosterStage2, sSolarPump, sBoosterStage1, sCompressor, sHeatPipeValve, sDiverterValve, sDhwPump, sHeatingCircuitPump, "bin:6", sMixerOpen, sMixerClosed, "bin:16", sBoostBlockTimeAfterPumpStart, sBoostBlockTimeAfterHD]
 	values = {}
 	
 	
-class sDHWGroup(InformationGroup):
+class sDhwGroup(InformationGroup):
 	name = "S_DHW"
 	description = "Hot Water Status"
 	command = b"\xF3"
-	parsemap = [sDHWTemp, sOutsideTemp, sDHWTemp, sCompBlockTimeTemp]
+	parsemap = [sDhwTemp, sOutsideTemp, sDhwTargetTemp, sCompBlockTimeTemp, "bin:16", sHeatBlockTime, sDhwBoosterStage, "bin:8", sPasteurisationMode, sDhwOpMode]
 	values = {}
 	
 	
@@ -182,7 +182,7 @@ class sHC1Group(InformationGroup):
 	name = "S_HC1"
 	description = "Heat Circle 1 Status"
 	command = b"\xF4"
-	parsemap = []
+	parsemap = [sOutsideTemp,"bin:16", sReturnTemp, sIntegralHeat, sFlowTemp, sHeatTargetTemp, sHeatTemp, sOnHysteresisNo, sOffHysteresisNo, sHcBoosterStage, sSeasonMode, "bin:16", sIntegralSwitch, sHcOpMode, "bin:16", "bin:16", "bin:16", "bin:16", sInsideTemp, "bin:16", "bin:16", sRoomTargetTemp ]
 	values = {}
 	
 	
@@ -190,7 +190,7 @@ class sHC2Group(InformationGroup):
 	name = "S_HC2"
 	description = "Heat Circle 2 Status"
 	command = b"\xF5"
-	parsemap = []
+	parsemap = [sOutsideTemp, sReturnTemp, sFlowTemp, sHeatTargetTemp, sHeatTargetTemp, "bin:16", "bin:8", sSeasonMode, "bin:16", sHcOpMode]
 	values = {}
 	
 	
@@ -206,7 +206,7 @@ class sGlobalGroup(InformationGroup):
 	name = "S_GlobalGroup"
 	description = "Global Status"
 	command = b"\xFB"
-	parsemap = [sCollectorTemp, sOutsideTemp, sFlowTempHC1, sReturnTemp, sOHotGasTemp, sDHWTemp, sFlowTempHC2, sInsideTemp, sEvaporatorTemp, sCondensorTemp, "pad:16", sOutputVentilatorPower, sInputVentilatorPower, sMainVentilatorPower, "pad:8", sOutputVentilatorSpeed, sInputVentilatorSpeed, sMainVentilatorSpeed, sOutsideTempFiltered, sRelHumidity, sDewPoint, "pad:16", ]
+	parsemap = [sCollectorTemp, sOutsideTemp, sFlowTempHC1, sReturnTemp, sOHotGasTemp, sDhwTemp, sFlowTempHC2, sInsideTemp, sEvaporatorTemp, sCondensorTemp, sBoosterStage3, sBoosterStage2, sBoosterStage1, sCompressor, sHeatPipeValve, sDiverterValve, sDhwPump, sHeatingCircuitPump, "bin:6", sMixerClosed, sMixerOpen, sOutputVentilatorPower, sInputVentilatorPower, sMainVentilatorPower, sHighPressureSensor, sLowPressureSensor, sSignalAnode, sOvenFireplace, sEvaporatorIceMonitor, "bin:3", sOutputVentilatorSpeed, sInputVentilatorSpeed, sMainVentilatorSpeed, "bin:8", sOutsideTempFiltered, "bin:8", sRelHumidity, "bin:16", ]
 	values = {}	
 	
 	
@@ -214,7 +214,7 @@ class pTimedateGroup(InformationGroup):
 	name = "P_Timedate"
 	description = "Timedate Parameter"
 	command = b"\xFC"
-	parsemap = ["pad:8",sWeekDay, pClockHour, pClockMinutes, pClockSeconds, pClockYear, "pad:8", pClockMonth, pClockDay]
+	parsemap = ["bin:8",sWeekDay, pClockHour, pClockMinutes, pClockSeconds, pClockYear, "bin:8", pClockMonth, pClockDay]
 	values = {}
 	
 	

@@ -3,8 +3,8 @@ from transport.transport_tcp import TransportTCP
 from protocol.communicator import Communicator
 from protocol.defs.defs2x6.defs2x6 import *
 
-parameter_requests = [sHistoryGroup, sSolarGroup, sProgramGroup, sFanGroup, sControlGroup, sDHWGroup, sHC1Group, sHC2Group, sSystemGroup, sGlobalGroup, pTimedateGroup, sFirmwareGroup, sSystemGroup, sLast10ErrorsGroup]
-status_requests = [pSolarGroup, pP01P12Group, pHeat1Group, pHeat2Group, pDHWGroup, pRestartGroup, pDryHeatGroup, pDefrostEvaGroup, pDefrostAAGroup, sHistoryGroup, pCircPumpGroup]
+status_requests = [sHistoryGroup, sSolarGroup, sProgramGroup, sFanGroup, sControlGroup, sDhwGroup, sHC1Group, sHC2Group, sSystemGroup, sGlobalGroup, sFirmwareGroup, sSystemGroup, sLast10ErrorsGroup]
+parameter_requests = []#[pSolarGroup, pP01P12Group, pHeat1Group, pHeat2Group, pDHWGroup, pFanGroup, pRestartGroup, pDryHeatGroup, pDefrostEvaGroup, pDefrostAAGroup, pCircPumpGroup, sProgramGroup, pHeatProgGroup, pDHWProgGroup, pFanProgGroup, pTimedateGroup]
 
 def main():
 	trans = TransportTCP("192.168.178.201", 7777)

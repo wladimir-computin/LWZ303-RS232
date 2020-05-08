@@ -128,13 +128,13 @@ class pMinSetHeatFlowTempHC1(InformationObj):
 	unit = "°C"
 	
 class pMaxSetHeatFlowTempHC2(InformationObj):
-	name = "pMaxSetHeatFlowTempHC1"
+	name = "pMaxSetHeatFlowTempHC2"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
 class pMinSetHeatFlowTempHC2(InformationObj):
-	name = "pMinSetHeatFlowTempHC1"
+	name = "pMinSetHeatFlowTempHC2"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
@@ -475,8 +475,14 @@ class sCollectorTemp(InformationObj):
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class sDHWTemp(InformationObj):
-	name = "sDHWTemp"
+class sDhwTemp(InformationObj):
+	name = "sDhwTemp"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class sDhwTargetTemp(InformationObj):
+	name = "sDhwTargetTemp"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
@@ -492,6 +498,26 @@ class sEdSolPump(InformationObj):
 	description = ""
 	parsemap = {"val":"int:8"}
 	unit = "%"
+	
+class sHeatBlockTime(InformationObj):
+	name = "sHeatBlockTime"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	
+class sDhwBoosterStage(InformationObj):
+	name = "sDhwBoosterStage"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	
+class sPasteurisationMode(InformationObj):
+	name = "sPasteurisationMode"
+	description = ""
+	parsemap = {"val":"uint:8"}
+
+class sDhwOpMode(InformationObj):
+	name = "sDhwOpMode"
+	description = ""
+	parsemap = {"val":"uint:8"}
 	
 class sAutoFanCalib(InformationObj):
 	name = "sAutoFanCalib"
@@ -607,12 +633,6 @@ class sOutsideTemp(InformationObj):
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
-class sDHWTemp(InformationObj):
-	name = "sDHWTemp"
-	description = ""
-	parsemap = {"val":FixedPOneDec16}
-	unit = "°C"
-	
 class sCompBlockTimeTemp(InformationObj):
 	name = "sCompBlockTimeTemp"
 	description = ""
@@ -637,8 +657,8 @@ class sHeatingHours(InformationObj):
 	parsemap = {"val":"uint:16"}
 	unit = ""
 	
-class sDHWhours(InformationObj):
-	name = "sDHWhours"
+class sDhwHours(InformationObj):
+	name = "sDhwHours"
 	description = ""
 	parsemap = {"val":"uint:16"}
 	unit = ""
@@ -648,30 +668,7 @@ class sCoolingHours(InformationObj):
 	description = ""
 	parsemap = {"val":"uint:16"}
 	unit = ""
-	
-'''
-"FBglob206" => [["outsideTemp: ", 8, 4, "hex2int", 10],	[" flowTemp: ",		        12, 4, "hex2int", 10],
-	      [" returnTemp: ",		    16, 4, "hex2int", 10],  [" hotGasTemp: ", 	        20, 4, "hex2int", 10],
-	      [" dhwTemp: ",		    24, 4, "hex2int", 10],  [" flowTempHC2: ",	        28, 4, "hex2int", 10],
-	      [" evaporatorTemp: ",	    36, 4, "hex2int", 10],  [" condenserTemp: ",	    40, 4, "hex2int", 10],
-	      [" mixerOpen: ",		    47, 1, "bit1", 1],      [" mixerClosed: ",		    47, 1, "bit0", 1],
-	      [" heatPipeValve: ",	    45, 1, "bit3", 1],      [" diverterValve: ",		45, 1, "bit2", 1],
-	      [" dhwPump: ",		    45, 1, "bit1", 1],      [" heatingCircuitPump: ",	45, 1, "bit0", 1],
-	      [" solarPump: ",		    44, 1, "n.a", 1],      	[" compressor: ",		    44, 1, "bit0", 1],
-	      [" boosterStage3: ",	    44, 1, "bit3", 1],      [" boosterStage2: ",		44, 1, "bit2", 1], 	      
-          [" boosterStage1: ",	    44, 1, "bit1", 1],      [" highPressureSensor: ",	54, 1, "bit3", 1],
-	      [" lowPressureSensor: ",	54, 1, "bit2", 1],      [" evaporatorIceMonitor: ",	55, 1, "bit3", 1],
-	      [" signalAnode: ",	    54, 1, "bit1", 1],      [" evuRelease: ",		    48, 1, "n.a.", 1],
-	      [" ovenFireplace: ",	    54, 1, "bit0", 1],      [" STB: ",			        48, 1, "n.a.", 1],
-	      [" outputVentilatorPower: ",48, 2, "hex", 1],  	[" inputVentilatorPower: ",	50, 2, "hex", 1],	[" mainVentilatorPower: ",	52, 2, "hex", 255/100],          
-          [" outputVentilatorSpeed: ",56, 2, "hex", 1],	    [" inputVentilatorSpeed: ",	58, 2, "hex", 1],  	[" mainVentilatorSpeed: ",	60, 2, "hex", 1],
-          [" outsideTempFiltered: ",64, 4, "hex2int", 10],	[" relHumidity: ",		    70, 4, "n.a.", 1],
-          [" dewPoint: ",		    5, 4, "n.a.", 1],
-	      [" P_Nd: ",		        5, 4, "n.a.", 1],	    [" P_Hd: ",			        5, 4, "n.a.", 1],
-	      [" actualPower_Qc: ",	    5, 8, "n.a.", 1],	    [" actualPower_Pel: ",		5, 8, "n.a.", 1],
-	      [" collectorTemp: ",	    4,  4, "hex2int", 10],	[" insideTemp: ",		    32, 4, "hex2int", 10] 
-'''
-	
+
 class sFlowTempHC1(InformationObj):
 	name = "sFlowTempHC1"
 	description = ""
@@ -689,13 +686,7 @@ class sOHotGasTemp(InformationObj):
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
-	
-class sDHWTemp(InformationObj):
-	name = "sDHWTemp"
-	description = ""
-	parsemap = {"val":FixedPOneDec16}
-	unit = "°C"
-	
+
 class sFlowTempHC2(InformationObj):
 	name = "sFlowTempHC2"
 	description = ""
@@ -720,6 +711,51 @@ class sCondensorTemp(InformationObj):
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
+class sBoosterStage3(InformationObj):
+	name = "sBoosterStage3"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class sBoosterStage2(InformationObj):
+	name = "sBoosterStage2"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class sBoosterStage1(InformationObj):
+	name = "sBoosterStage1"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class sCompressor(InformationObj):
+	name = "sCompressor"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class sHeatPipeValve(InformationObj):
+	name = "sHeatPipeValve"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class sDiverterValve(InformationObj):
+	name = "sDiverterValve"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class sDhwPump(InformationObj):
+	name = "sDhwPump"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class sHeatingCircuitPump(InformationObj):
+	name = "sHeatingCircuitPump"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class sMixerClosed(InformationObj):
+	name = "sMixerClosed"
+	description = ""
+	parsemap = {"val":"bool"}
+	
 class sMixerOpen(InformationObj):
 	name = "sMixerOpen"
 	description = ""
@@ -742,6 +778,31 @@ class sMainVentilatorPower(InformationObj):
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = "%"
+
+class sLowPressureSensor(InformationObj):
+	name = "sLowPressureSensor"
+	description = ""
+	parsemap = {"val":"bool"}
+
+class sHighPressureSensor(InformationObj):
+	name = "sHighPressureSensor"
+	description = ""
+	parsemap = {"val":"bool"}
+
+class sSignalAnode(InformationObj):
+	name = "sSignalAnode"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class sOvenFireplace(InformationObj):
+	name = "sOvenFireplace"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class sEvaporatorIceMonitor(InformationObj):
+	name = "sEvaporatorIceMonitor"
+	description = ""
+	parsemap = {"val":"bool"}
 
 class sOutputVentilatorSpeed(InformationObj):
 	name = "sOutputVentilatorSpeed"
@@ -790,6 +851,240 @@ class sUserSetFanRemainingTime(InformationObj):
 	parsemap = {"val":"uint:16"}
 	unit = "min"
 
+class sIntegralHeat(InformationObj):
+	name = "sIntegralHeat"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	
+class sHeatTemp(InformationObj):
+	name = "sHeatTemp"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class sHeatTargetTemp(InformationObj):
+	name = "sHeatTargetTemp"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class sSeasonMode(InformationObj):
+	name = "sSeasonMode"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	val_min = 1
+	val_max = 2
+	
+	def __init__(self, data=None, value=None):
+		if data is not None:
+			start = data.pos
+			for k,v in self.parsemap.items():
+				value = data.read(v)
+				if value == 1:
+					self.value = "WINTER"
+				elif value == 2:
+					self.value = "SUMMER"
+			self.rawdata = data[start:data.pos]
+		else:
+			self.value = value
+			self.update
+
+	def update(self):
+		bits = BitStream()
+		for k,v in self.parsemap.items():
+			if self.value == "WINTER":
+				value = 1
+			elif self.value == "SUMMER":
+				value = 2
+			bits.append(Bits(f"{v}={value}"))
+		self.rawdata = bits
+		
+class sIntegralSwitch(InformationObj):
+	name = "sIntegralSwitch"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	
+class sHcOpMode(InformationObj):
+	name = "sHcOpMode"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	
+class sRoomTargetTemp(InformationObj):
+	name = "sRoomTargetTemp"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class sOnHysteresisNo(InformationObj):
+	name = "sOnHysteresisNo"
+	description = ""
+	parsemap = {"val":"uint:8"}
+
+class sOffHysteresisNo(InformationObj):
+	name = "sOffHysteresisNo"
+	description = ""
+	parsemap = {"val":"uint:8"}
+
+class sHcBoosterStage(InformationObj):
+	name = "sHcBoosterStage"
+	description = ""
+	parsemap = {"val":"uint:8"}
+
+class sHeatRequest(InformationObj):
+	name = "sHeatRequest"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	val_min = 0
+	val_max = 5
+	
+	def __init__(self, data=None, value=None):
+		if data is not None:
+			start = data.pos
+			for k,v in self.parsemap.items():
+				value = data.read(v)
+				if value == 0:
+					self.value = "DHW"
+				elif value == 2:
+					self.value = "HEAT"
+				elif value == 5:
+					self.value = "OFF"
+				elif value == 6:
+					self.value = "DEFROST"
+			self.rawdata = data[start:data.pos]
+		else:
+			self.value = value
+			self.update
+
+	def update(self):
+		bits = BitStream()
+		for k,v in self.parsemap.items():
+			if self.value == "DHW":
+				value = 0
+			elif self.value == "HEAT":
+				value = 2
+			elif self.value == "OFF":
+				value = 5
+			elif self.value == "DEFROST":
+				value = 6
+			bits.append(Bits(f"{v}={value}"))
+		self.rawdata = bits
+	
+class sHcStage(InformationObj):
+	name = "sHcStage"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	val_min = 0
+	val_max = 5
+	
+	def __init__(self, data=None, value=None):
+		if data is not None:
+			start = data.pos
+			for k,v in self.parsemap.items():
+				value = data.read(v)
+				if value == 0:
+					self.value = "OFF"
+				elif value == 1:
+					self.value = "SOLAR"
+				elif value == 2:
+					self.value = "HEATPUMP"
+				elif value == 3:
+					self.value = "BOOSTER_1"
+				elif value == 4:
+					self.value = "BOOSTER_2"
+				elif value == 5:
+					self.value = "BOOSTER_3"
+			self.rawdata = data[start:data.pos]
+		else:
+			self.value = value
+			self.update
+
+	def update(self):
+		bits = BitStream()
+		for k,v in self.parsemap.items():
+			if self.value == "OFF":
+				value = 0
+			elif self.value == "SOLAR":
+				value = 1
+			elif self.value == "HEATPUMP":
+				value = 2
+			elif self.value == "BOOSTER_1":
+				value = 3
+			elif self.value == "BOOSTER_2":
+				value = 4
+			elif self.value == "BOOSTER_3":
+				value = 5
+			bits.append(Bits(f"{v}={value}"))
+		self.rawdata = bits
+	
+class sDhwStage(InformationObj):
+	name = "sDhwStage"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	val_min = 0
+	val_max = 3
+	
+	def __init__(self, data=None, value=None):
+		if data is not None:
+			start = data.pos
+			for k,v in self.parsemap.items():
+				value = data.read(v)
+				if value == 0:
+					self.value = "OFF"
+				elif value == 1:
+					self.value = "SOLAR"
+				elif value == 2:
+					self.value = "HEATPUMP"
+				elif value == 3:
+					self.value = "BOOST"
+			self.rawdata = data[start:data.pos]
+		else:
+			self.value = value
+			self.update
+
+	def update(self):
+		bits = BitStream()
+		for k,v in self.parsemap.items():
+			if self.value == "OFF":
+				value = 0
+			elif self.value == "SOLAR":
+				value = 1
+			elif self.value == "HEATPUMP":
+				value = 2
+			elif self.value == "BOOST":
+				value = 3
+			bits.append(Bits(f"{v}={value}"))
+		self.rawdata = bits
+	
+class sHeatStageControlModul(InformationObj):
+	name = "sHeatStageControlModul"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	
+class sCompBlockTime(InformationObj):
+	name = "sCompBlockTime"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	
+class sDefrostEvaporator(InformationObj):
+	name = "sDefrostEvaporator"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	
+class sSolarPump(InformationObj):
+	name = "sSolarPump"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class sBoostBlockTimeAfterPumpStart(InformationObj):
+	name = "sBoostBlockTimeAfterPumpStart"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	
+class sBoostBlockTimeAfterHD(InformationObj):
+	name = "sBoostBlockTimeAfterHD"
+	description = ""
+	parsemap = {"val":"uint:16"}
+	
 class sNumberErrors(InformationObj):
 	name = "sNumberErrors"
 	description = ""

@@ -15,13 +15,13 @@ class InformationObj(object):
 	def __init__(self, data=None, value=None):
 		self.unparsed = bytes()
 		if data is not None:
-			start = data.bytepos
+			start = data.pos
 			for k,v in self.parsemap.items():
 				if isinstance(v, str):
 					self.value = data.read(v)
 				else:
 					self.value = v(data)
-			self.rawdata = data.bytes[start:data.bytepos]
+			self.rawdata = data[start:data.pos]
 		else:
 			if value >= self.val_min and value <= self.val_max:
 				self.value = value
@@ -34,7 +34,7 @@ class InformationObj(object):
 				bits.append(Bits(f"{v}={self.value}"))
 			else:
 				bits.append(Bits(bytes=self.value.toBytes()))
-		self.rawdata = bits.bytes
+		self.rawdata = bits
 
 	def update_recursive(self):
 		for k,v in self.parsemap.items():
@@ -42,7 +42,7 @@ class InformationObj(object):
 				self.value.update_recursive()
 		self.update()
 		
-	def toBytes(self):
+	def toBits(self):
 		return self.rawdata
 
 	def __str__(self):
@@ -61,20 +61,32 @@ class InformationGroup(object):
 		self.unparsed = bytes()
 		if data is not None:
 			start = data.bytepos
+			i = 0
 			for p in self.parsemap:
 				if isinstance(p, str):
-					data.read(p)
+					pad = data.read(p)
+					self.values[f"UNPARSED_{i}"] = pad
 				else:
 					self.values[p.name] = p(data)
+				i+=1
+			rest = data.read("bin")
+			if rest:
+				self.values[f"UNPARSED_REST"] = rest
 			self.rawdata = data.bytes[start:data.bytepos]
 
 	def update(self):
 		bits = BitStream()
+		i = 0
 		for p in self.parsemap:
 			if isinstance(p, str):
-				bits.append(Bits(p))
+				ident = f"UNPARSED_{i}"
+				bits.append(Bits(f"{p}={self.values[ident]}"))
 			else:
-				bits.append(Bits(bytes=self.values[p.name].toBytes()))
+				bits.append(Bits(self.values[p.name].toBits()))
+			i+=1
+		if "UNPARSED_REST" in self.values:
+			rest = self.values["UNPARSED_REST"]
+			bits.append(Bits(f"bin={rest}"))
 		self.rawdata = bits.bytes
 		
 	def update_recursive(self):
@@ -83,13 +95,16 @@ class InformationGroup(object):
 				self.values[p.name].update_recursive()
 		self.update()
 		
-	def toBytes(self):
+	def toBits(self):
 		return self.rawdata
 		
 	def __str__(self):
 		out = ""
 		for k,v in self.values.items():
-			out += f" {v}\n"
+			if isinstance(v, str):
+				out += f" UNPARSED: {' '.join(v[i:i+8] for i in range(0, len(v), 8))}\n"
+			else:
+				out += f" {v}\n"
 		return f"Name: {self.name}\n{self.description}\n{out}" 
 
 
