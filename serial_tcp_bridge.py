@@ -47,7 +47,7 @@ class TCPSerialBridge(asyncio.Protocol):
 		print(f"READ: {s.hex()}\n")
 		 
 	def connected(self):
-		if ser is not None:
+		if TCPSerialBridge.ser is not None:
 			try:
 				self.hello_serial()
 				return True
@@ -112,7 +112,7 @@ class TCPSerialBridge(asyncio.Protocol):
 
 			if flag_read and response == DATA_READY:
 				print("\nWRITE: 10\n")
-				self.ser.write(b"\x10")
+				TCPSerialBridge.ser.ser.write(b"\x10")
 				response = TCPSerialBridge.ser.read_until(FOOTER)
 				print("CLIENT <- SERVER")
 				print(f"{self.address} <- {TCP_IP}")
