@@ -58,27 +58,23 @@ class TransportSerial():
 			flag_open = False
 			flag_read = False
 			flag_reset = False
-			if data.startswith(FLAG_CLOSE):
+			if FLAG_CLOSE in flags:
 				self.close_serial()
 				return
-			if data.startswith(FLAG_CONNECT):
+			if FLAG_CONNECT in flags:
 				flag_open = True
 				self.close_serial()
 				self.connect_serial()
-				data = data[len(FLAG_CONNECT):]
-			if data.startswith(FLAG_HELLO):
+			if FLAG_HELLO in flags:
 				self.hello_serial()
-				data = data[len(FLAG_HELLO):]
-			if data.startswith(FLAG_READ):
+			if FLAG_READ in flags:
 				flag_read = True
-				data = data[len(FLAG_READ):]
-			if data.startswith(FLAG_RESET):
+			if FLAG_RESET in flags:
 				flag_reset = True
-				data = data[len(FLAG_RESET):]
 
 			self.s.write(data)
 			response = bytes()
-			if flag_read:
+			if if FLAG_READ in flags::
 				response = self.s.read(2)
 			else:
 				response = self.s.read(100)
