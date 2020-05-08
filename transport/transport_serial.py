@@ -1,13 +1,14 @@
 import serial
 from transport.transport_common import *
 
+FOOTER = b"\x10\x03"
+DATA_READY = b"\x10\x02"
+
 class TransportSerial():
 	
 	s = None
 	device = ""
 	baud = 0
-			
-	MAX_RETRIES = 5
 	
 	def __init__(self, device, baud):
 		self.device = device
@@ -19,20 +20,20 @@ class TransportSerial():
 			self.s = serial.Serial(self.device, baudrate=self.baud, timeout=1)
 
 	def hello_serial(self):
-		print("SERIAL HELLO!")
-		print("WRITE: 02")
+		#print("SERIAL HELLO!")
+		#print("WRITE: 02")
 		self.s.write(b"\x02")
 		response = self.s.read(1)
-		print(f"READ: {response.hex()}\n")
+		#print(f"READ: {response.hex()}\n")
 		if response != b"\x10":
 			 raise IOError("Error: heat pump does not respond - is it connected?")
 		 
 	def reset_serial(self):
-		print("SERIAL RESET!")
-		print("WRITE: 1002")
+		#print("SERIAL RESET!")
+		#print("WRITE: 1002")
 		self.s.write(DATA_READY)
 		response = self.s.read(1)
-		print(f"READ: {response.hex()}\n")
+		#print(f"READ: {response.hex()}\n")
 		 
 	def connected(self):
 		if self.s is not None:
@@ -74,13 +75,13 @@ class TransportSerial():
 
 			self.s.write(data)
 			response = bytes()
-			if if FLAG_READ in flags::
+			if FLAG_READ in flags:
 				response = self.s.read(2)
 			else:
 				response = self.s.read(100)
 
 			if flag_read and response == DATA_READY:
-				print("\nWRITE: 10\n")
+				#print("\nWRITE: 10\n")
 				self.s.write(b"\x10")
 				response += self.s.read_until(FOOTER)
 			if flag_reset:

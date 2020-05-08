@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from transport.transport_tcp import TransportTCP
+from transport.transport_serial import TransportSerial
 from protocol.communicator import Communicator
 from protocol.defs.defs2x6.defs2x6 import *
 
@@ -7,7 +8,8 @@ status_requests = [sHistoryGroup, sSolarGroup, sProgramGroup, sFanGroup, sContro
 parameter_requests = []#[pSolarGroup, pP01P12Group, pHeat1Group, pHeat2Group, pDHWGroup, pFanGroup, pRestartGroup, pDryHeatGroup, pDefrostEvaGroup, pDefrostAAGroup, pCircPumpGroup, sProgramGroup, pHeatProgGroup, pDHWProgGroup, pFanProgGroup, pTimedateGroup]
 
 def main():
-	trans = TransportTCP("192.168.178.201", 7777)
+	#trans = TransportTCP("192.168.178.201", 7777)
+	trans = TransportSerial("/dev/ttyUSB0", 9600)
 	comm = Communicator(trans)
 	comm.start()
 	requests = parameter_requests + status_requests
