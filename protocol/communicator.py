@@ -55,11 +55,14 @@ class Communicator:
 		print(f" checksum error!")
 		return False
 		
-	def prepareReadRequest(self, reg):
+	def prepareRequest(self, reg, write=False):
 		request = self.checksum(reg) + reg
 		request = request.replace(b"\x10", b"\x10\x10")
 		request = request.replace(b"\x2b", b"\x2b\x18")
-		request = HEADER_READ + request + FOOTER
+		if not write:
+			request = HEADER_READ + request + FOOTER
+		else:
+			request = HEADER_WRITE + request + FOOTER
 		return request
 		
 	def prepareResponse(self, response):
@@ -71,7 +74,7 @@ class Communicator:
 		
 	def readRegister(self, reg, flags=[FLAG_HELLO, FLAG_READ]):
 		try:
-			request = self.prepareReadRequest(reg)
+			request = self.prepareRequest(reg)
 			print(f"Sending: {request.hex()}")
 			
 			if self.transport is not None:
@@ -108,4 +111,32 @@ class Communicator:
 			
 				
 	def writeRegister(self, reg, val):
-		pass
+		original = self.readRegister(reg, [FLAG_HELLO, FLAG_READ, FLAG_RESET])
+		if original:
+			print(f"Original: {original.hex()}")
+			print(f"New ;     {val.hex()}")
+			
+			try:
+				request = self.prepareRequest(reg + val, write=True)
+				print(f"Sending: {request.hex()}")
+				
+				if self.transport is not None:
+					tried = 0
+					#while tried < self.MAX_RETRYS:
+					tried += 1
+					response = self.transport.sendWithFlags([FLAG_READ], request)
+					
+					if response.startswith(DATA_READY + HEADER_OK) and response.endswith(FOOTER):
+						
+						response = self.prepareResponse(response)
+						print(f"Response: {response.hex()}")
+						if(self.verifyRequest(request, response)):
+							if(self.verifyChecksum(response)):
+								response = response[2:]
+								return response
+				return b""
+			except Exception as x:
+				print(x)
+		return None
+
+			

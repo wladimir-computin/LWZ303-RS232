@@ -78,7 +78,7 @@ class pHeatProgGroup(InformationGroup):
 	name = "P_HeatProgGroup"
 	description = "Heat Program Parameters"
 	command = b"\x0B"
-	parsemap = []
+	parsemap = [pProgHC1StartTime, pProgHC1EndTime, "bin:1", pProgHC1Sunday, pProgHC1Saturday, pProgHC1Friday, pProgHC1Thursday, pProgHC1Wednesday, pProgHC1Tuesday, pProgHC1Monday, pProgHC1Enable, pProgHC2StartTime, pProgHC2EndTime, "bin:1", pProgHC2Sunday, pProgHC2Saturday, pProgHC2Friday, pProgHC2Thursday, pProgHC2Wednesday, pProgHC2Tuesday, pProgHC2Monday, pProgHC2Enable]
 	values = {}
 	
 	
@@ -86,7 +86,7 @@ class pDHWProgGroup(InformationGroup):
 	name = "P_DHWProgGroup"
 	description = "Hot Water Program Parameters"
 	command = b"\x0C"
-	parsemap = []
+	parsemap = [pProgDHWStartTime, pProgDHWEndTime, "bin:1", pProgDHWSunday, pProgDHWSaturday, pProgDHWFriday, pProgDHWThursday, pProgDHWWednesday, pProgDHWTuesday, pProgDHWMonday, pProgDHWEnable]
 	values = {}
 	
 
@@ -94,7 +94,7 @@ class pFanProgGroup(InformationGroup):
 	name = "P_FanProgGroup"
 	description = "Fan Program Parameters"
 	command = b"\x0D"
-	parsemap = []
+	parsemap = [pProgFan1StartTime, pProgFan1EndTime, "bin:1", pProgFan1Sunday, pProgFan1Saturday, pProgFan1Friday, pProgFan1Thursday, pProgFan1Wednesday, pProgFan1Tuesday, pProgFan1Monday, pProgFan1Enable, pProgFan2StartTime, pProgFan2EndTime, "bin:1", pProgFan2Sunday, pProgFan2Saturday, pProgFan2Friday, pProgFan2Thursday, pProgFan2Wednesday, pProgFan2Tuesday, pProgFan2Monday, pProgFan2Enable]
 	values = {}
 	
 	

@@ -496,7 +496,7 @@ class sFlowTemp(InformationObj):
 class sEdSolPump(InformationObj):
 	name = "sEdSolPump"
 	description = ""
-	parsemap = {"val":"int:8"}
+	parsemap = {"val":"uint:8"}
 	unit = "%"
 	
 class sHeatBlockTime(InformationObj):
@@ -1150,6 +1150,256 @@ class sEndTimeAP0(InformationObj):
 	name = "sEndTimeAP0"
 	description = ""
 	parsemap = {"val":"uint:32"}
+
+class pProgHC1StartTime(InformationObj):
+	name = "pProgHC1StartTime"
+	description = ""
+	parsemap = {"val":Time16}
+	
+class pProgHC1EndTime(InformationObj):
+	name = "pProgHC1EndTime"
+	description = ""
+	parsemap = {"val":Time16}
+	
+class pProgHC1Sunday(InformationObj):
+	name = "pProgHC1Sunday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgHC1Saturday(InformationObj):
+	name = "pProgHC1Saturday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgHC1Friday(InformationObj):
+	name = "pProgHC1Friday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgHC1Thursday(InformationObj):
+	name = "pProgHC1Thursday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgHC1Wednesday(InformationObj):
+	name = "pProgHC1Wednesday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgHC1Tuesday(InformationObj):
+	name = "pProgHC1Tuesday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgHC1Monday(InformationObj):
+	name = "pProgHC1Monday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgHC1Enable(InformationObj):
+	name = "pProgHC1Enable"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	
+class pProgHC2StartTime(InformationObj):
+	name = "pProgHC2StartTime"
+	description = ""
+	parsemap = {"val":Time16}
+	
+class pProgHC2EndTime(InformationObj):
+	name = "pProgHC2EndTime"
+	description = ""
+	parsemap = {"val":Time16}
+	
+class pProgHC2Sunday(InformationObj):
+	name = "pProgHC2Sunday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgHC2Saturday(InformationObj):
+	name = "pProgHC2Saturday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgHC2Friday(InformationObj):
+	name = "pProgHC2Friday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgHC2Thursday(InformationObj):
+	name = "pProgHC2Thursday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgHC2Wednesday(InformationObj):
+	name = "pProgHC2Wednesday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgHC2Tuesday(InformationObj):
+	name = "pProgHC2Tuesday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgHC2Monday(InformationObj):
+	name = "pProgHC2Monday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgHC2Enable(InformationObj):
+	name = "pProgHC2Enable"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	
+class pProgDHWStartTime(InformationObj):
+	name = "pProgDHWStartTime"
+	description = ""
+	parsemap = {"val":Time16}
+	
+class pProgDHWEndTime(InformationObj):
+	name = "pProgDHWEndTime"
+	description = ""
+	parsemap = {"val":Time16}
+	
+class pProgDHWSunday(InformationObj):
+	name = "pProgDHWSunday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgDHWSaturday(InformationObj):
+	name = "pProgDHWSaturday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgDHWFriday(InformationObj):
+	name = "pProgDHWFriday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgDHWThursday(InformationObj):
+	name = "pProgDHWThursday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgDHWWednesday(InformationObj):
+	name = "pProgDHWWednesday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgDHWTuesday(InformationObj):
+	name = "pProgDHWTuesday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgDHWMonday(InformationObj):
+	name = "pProgDHWMonday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgDHWEnable(InformationObj):
+	name = "pProgDHWEnable"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	
+class pProgFan1StartTime(InformationObj):
+	name = "pProgFan1StartTime"
+	description = ""
+	parsemap = {"val":Time16}
+	
+class pProgFan1EndTime(InformationObj):
+	name = "pProgFan1EndTime"
+	description = ""
+	parsemap = {"val":Time16}
+	
+class pProgFan1Sunday(InformationObj):
+	name = "pProgFan1Sunday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgFan1Saturday(InformationObj):
+	name = "pProgFan1Saturday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgFan1Friday(InformationObj):
+	name = "pProgFan1Friday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgFan1Thursday(InformationObj):
+	name = "pProgFan1Thursday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgFan1Wednesday(InformationObj):
+	name = "pProgFan1Wednesday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgFan1Tuesday(InformationObj):
+	name = "pProgFan1Tuesday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgFan1Monday(InformationObj):
+	name = "pProgFan1Monday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgFan1Enable(InformationObj):
+	name = "pProgFan1Enable"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	
+class pProgFan2StartTime(InformationObj):
+	name = "pProgFan2StartTime"
+	description = ""
+	parsemap = {"val":Time16}
+	
+class pProgFan2EndTime(InformationObj):
+	name = "pProgFan2EndTime"
+	description = ""
+	parsemap = {"val":Time16}
+	
+class pProgFan2Sunday(InformationObj):
+	name = "pProgFan2Sunday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgFan2Saturday(InformationObj):
+	name = "pProgFan2Saturday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgFan2Friday(InformationObj):
+	name = "pProgFan2Friday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgFan2Thursday(InformationObj):
+	name = "pProgFan2Thursday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgFan2Wednesday(InformationObj):
+	name = "pProgFan2Wednesday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgFan2Tuesday(InformationObj):
+	name = "pProgFan2Tuesday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgFan2Monday(InformationObj):
+	name = "pProgFan2Monday"
+	description = ""
+	parsemap = {"val":"bool"}
+	
+class pProgFan2Enable(InformationObj):
+	name = "pProgFan2Enable"
+	description = ""
+	parsemap = {"val":"uint:8"}
 	
 class sNumberErrors(InformationObj):
 	name = "sNumberErrors"

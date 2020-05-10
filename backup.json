@@ -1,0 +1,241 @@
+[
+    {
+        "raw": "0100323c0258000a0258",
+        "values": {
+            "CollectLimitTempSolar": "60.0",
+            "HystDiffTempSolar": "1.0",
+            "p80EnableSolar": "1",
+            "p81DiffTempSolarLoading": "5.0",
+            "p82DelayCompStartSolar": "60",
+            "p84DHWTempSolarMode": "60.0"
+        }
+    },
+    {
+        "raw": "00d200c800a001cc01a40064010100015e022601",
+        "values": {
+            "p01RoomTempDay": "21.0",
+            "p02RoomTempNight": "20.0",
+            "p03RoomTempStandby": "16.0",
+            "p04DHWsetTempDay": "46.0",
+            "p05DHWsetTempNight": "42.0",
+            "p06DHWsetTempStandby": "10.0",
+            "p07FanStageDay": "1",
+            "p08FanStageNight": "1",
+            "p09FanStageStandby": "0",
+            "p10HCTempManual": "35.0",
+            "p11DHWsetTempManual": "55.0",
+            "p12FanStageManual": "1"
+        }
+    },
+    {
+        "raw": "0002000a000006000000001e006402260032015e0032",
+        "values": {
+            "p13GradientHC1": "0.2",
+            "p14LowEndHC1": "1.0",
+            "p15RoomInfluenceHC1": "0",
+            "p16GradientHC2": "0.6",
+            "p17LowEndHC2": "0.0",
+            "p18RoomInfluenceHC2": "0",
+            "p19LowEndHC2": "3.0",
+            "p20LowEndHC2": "10.0",
+            "pMaxSetHeatFlowTempHC1": "55.0",
+            "pMaxSetHeatFlowTempHC2": "35.0",
+            "pMinSetHeatFlowTempHC1": "5.0",
+            "pMinSetHeatFlowTempHC2": "5.0"
+        }
+    },
+    {
+        "raw": "1e281e14140a0a0a0200640102ee00b4000f0001ffce141a",
+        "values": {
+            "UNPARSED_REST": "00001111000000000000000111111111110011100001010000011010",
+            "p21Hyst1": "3.0",
+            "p21Hyst4": "2.0",
+            "p22Hyst2": "4.0",
+            "p22Hyst5": "2.0",
+            "p23Hyst3": "3.0",
+            "p23Hyst6": "1.0",
+            "p23Hyst7": "1.0",
+            "p23Hyst8": "1.0",
+            "p29HystAsymmetry": "2",
+            "p30integralComponent": "10.0",
+            "p31MaxBoostStages": "1",
+            "p78DualModePoint": "18.0",
+            "p79BoosterTimeoutHC": "0",
+            "pMaxHeatFlowTemp": "75.0"
+        }
+    },
+    {
+        "raw": "1e5aff9c1e0c0064030002ee01",
+        "values": {
+            "UNPARSED_REST": "1110111000000001",
+            "p32HystDHW": "3.0",
+            "p33BoosterTimeoutDHW": "90",
+            "p34TempLimitBoostDHW": "-10.0",
+            "p35PasteurisationInterval": "30",
+            "p36MaxDurationDHWLoad": "12",
+            "p84DHWTempSolarMode": "0.2",
+            "pMaxBoostStagesDHW": "3",
+            "pPasteurisationTemp": "100"
+        }
+    },
+    {
+        "raw": "005000640082005000640082003c003c003c003c0000",
+        "values": {
+            "p37Fanstage1AirflowInlet": "80",
+            "p38Fanstage2AirflowInlet": "100",
+            "p39Fanstage3AirflowInlet": "130",
+            "p40Fanstage1AirflowOutlet": "80",
+            "p41Fanstage2AirflowOutlet": "100",
+            "p42Fanstage3AirflowOutlet": "130",
+            "p43UnschedVent3": "60",
+            "p44UnschedVent2": "60",
+            "p45UnschedVent1": "60",
+            "p46UnschedVent0": "60",
+            "p75PassiveCooling": "0"
+        }
+    },
+    {
+        "raw": "007800640000001e",
+        "values": {
+            "UNPARSED_REST": "000000000110010000000000000000000000000000011110",
+            "p59RestartBeforeSetbackEnd": "12.0"
+        }
+    },
+    {
+        "raw": "0000fa01900002001e",
+        "values": {
+            "p70StartDryHeat": "0",
+            "p71BaseTemp": "25.0",
+            "p72PeakTemp": "40.0",
+            "p73TempDuration": "2",
+            "p74TempIncrease": "3.0"
+        }
+    },
+    {
+        "raw": "0096000a00960064143c",
+        "values": {
+            "p47CompressorRestartDelay": "20",
+            "p48MainFanSpeed": "60",
+            "pLimitTempCondenserDefrostTerm": "100",
+            "pLimitTempCondenserElectBoost": "150",
+            "pMaxTimeDefrostEvaporator": "10",
+            "pUpTempLimitDefrostEvaporatorEnd": "150"
+        }
+    },
+    {
+        "raw": "3c0028005a",
+        "values": {
+            "pDefrostStartThreshold": "40",
+            "pMaxDefrostDurationAAExchanger": "60",
+            "pVolumeFlowFilterReplacement": "90"
+        }
+    },
+    {
+        "raw": "010032000000fa003c",
+        "values": {
+            "p54MinPumpCycles": "1",
+            "p55MaxPumpCycles": "50",
+            "p56OutTempMaxPumpCycles": "0",
+            "p57OutTempMinPumpCycles": "250",
+            "p58SuppressTempCaptPumpStart": "60"
+        }
+    },
+    {
+        "raw": "01810102020100007bdb000000000000000000",
+        "values": {
+            "UNPARSED_1": "1000000100000001",
+            "sBaseTimeAP0": "31707",
+            "sEndTimeAP0": "0",
+            "sOperationMode": "AUTOMATIC",
+            "sProgStateDHW": "NIGHT",
+            "sProgStateFan": "NORMAL",
+            "sProgStateHC": "NIGHT",
+            "sStartTimeAP0": "0",
+            "sStatusAP0": "0"
+        }
+    },
+    {
+        "raw": "08fc03207f0103e806a41f00",
+        "values": {
+            "UNPARSED_13": "0",
+            "UNPARSED_2": "0",
+            "pProgHC1Enable": "1",
+            "pProgHC1EndTime": "08:00",
+            "pProgHC1Friday": "True",
+            "pProgHC1Monday": "True",
+            "pProgHC1Saturday": "True",
+            "pProgHC1StartTime": "23:00",
+            "pProgHC1Sunday": "True",
+            "pProgHC1Thursday": "True",
+            "pProgHC1Tuesday": "True",
+            "pProgHC1Wednesday": "True",
+            "pProgHC2Enable": "0",
+            "pProgHC2EndTime": "17:00",
+            "pProgHC2Friday": "True",
+            "pProgHC2Monday": "True",
+            "pProgHC2Saturday": "False",
+            "pProgHC2StartTime": "10:00",
+            "pProgHC2Sunday": "False",
+            "pProgHC2Thursday": "True",
+            "pProgHC2Tuesday": "True",
+            "pProgHC2Wednesday": "True"
+        }
+    },
+    {
+        "raw": "08fc03207f01",
+        "values": {
+            "UNPARSED_2": "0",
+            "pProgDHWEnable": "1",
+            "pProgDHWEndTime": "08:00",
+            "pProgDHWFriday": "True",
+            "pProgDHWMonday": "True",
+            "pProgDHWSaturday": "True",
+            "pProgDHWStartTime": "23:00",
+            "pProgDHWSunday": "True",
+            "pProgDHWThursday": "True",
+            "pProgDHWTuesday": "True",
+            "pProgDHWWednesday": "True"
+        }
+    },
+    {
+        "raw": "089802587f0003e806a41f00",
+        "values": {
+            "UNPARSED_13": "0",
+            "UNPARSED_2": "0",
+            "pProgFan1Enable": "0",
+            "pProgFan1EndTime": "06:00",
+            "pProgFan1Friday": "True",
+            "pProgFan1Monday": "True",
+            "pProgFan1Saturday": "True",
+            "pProgFan1StartTime": "22:00",
+            "pProgFan1Sunday": "True",
+            "pProgFan1Thursday": "True",
+            "pProgFan1Tuesday": "True",
+            "pProgFan1Wednesday": "True",
+            "pProgFan2Enable": "0",
+            "pProgFan2EndTime": "17:00",
+            "pProgFan2Friday": "True",
+            "pProgFan2Monday": "True",
+            "pProgFan2Saturday": "False",
+            "pProgFan2StartTime": "10:00",
+            "pProgFan2Sunday": "False",
+            "pProgFan2Thursday": "True",
+            "pProgFan2Tuesday": "True",
+            "pProgFan2Wednesday": "True"
+        }
+    },
+    {
+        "raw": "00060434261400050a",
+        "values": {
+            "UNPARSED_0": "00000000",
+            "UNPARSED_6": "00000000",
+            "pClockDay": "10",
+            "pClockHour": "4",
+            "pClockMinutes": "52",
+            "pClockMonth": "5",
+            "pClockSeconds": "38",
+            "pClockYear": "20",
+            "sWeekDay": "6"
+        }
+    }
+]

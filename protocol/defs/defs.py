@@ -95,7 +95,7 @@ class InformationGroup(object):
 				self.values[p.name].update_recursive()
 		self.update()
 		
-	def toBits(self):
+	def toBytes(self):
 		return self.rawdata
 		
 	def __str__(self):
@@ -122,7 +122,7 @@ class FixedPOneDec8():
 			
 	def update(self):
 		bits = BitStream()
-		bits.append(Bits(f"int:8={self.value*10:d}"))
+		bits.append(Bits(f"int:8={int(self.value*10):d}"))
 		self.rawdata = bits.bytes
 		
 	def update_recursive(self):
@@ -152,7 +152,7 @@ class FixedPOneDec16():
 			
 	def update(self):
 		bits = BitStream()
-		bits.append(Bits(f"int:16={self.value*10:d}"))
+		bits.append(Bits(f"int:16={int(self.value*10):d}"))
 		self.rawdata = bits.bytes
 		
 	def update_recursive(self):
@@ -214,9 +214,8 @@ class Time16():
 			
 	def update(self):
 		bits = BitStream()
-		vals = self.value.split(":")
-		val = vals[0]*100 + vals[1]
-		bits.append(Bits(f"uint:16={val:d}"))
+		val = int(self.value[0:2])*100 + int(self.value[3:])
+		bits.append(Bits(f"uint:16={int(val):d}"))
 		self.rawdata = bits.bytes
 		
 	def update_recursive(self):
@@ -248,9 +247,8 @@ class Date16():
 			
 	def update(self):
 		bits = BitStream()
-		vals = self.value.split(".")
-		val = vals[0]*100 + vals[1]
-		bits.append(Bits(f"uint:16={val:d}"))
+		val = int(self.value[0:2])*100 + int(self.value[3:])
+		bits.append(Bits(f"uint:16={int(val):d}"))
 		self.rawdata = bits.bytes
 		
 	def update_recursive(self):
