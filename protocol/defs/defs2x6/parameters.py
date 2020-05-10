@@ -1085,6 +1085,72 @@ class sBoostBlockTimeAfterHD(InformationObj):
 	description = ""
 	parsemap = {"val":"uint:16"}
 	
+class sOperationMode(InformationObj):
+	name = "sOperationMode"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	val_min = 0
+	val_max = 1
+	
+	def __init__(self, data=None, value=None):
+		if data is not None:
+			start = data.pos
+			for k,v in self.parsemap.items():
+				value = data.read(v)
+				if value == 0:
+					self.value = "MANUAL"
+				elif value == 1:
+					self.value = "AUTOMATIC"
+			self.rawdata = data[start:data.pos]
+		else:
+			self.value = value
+			self.update
+
+	def update(self):
+		bits = BitStream()
+		for k,v in self.parsemap.items():
+			if self.value == "MANUAL":
+				value = 0
+			elif self.value == "AUTOMATIC":
+				value = 1
+			bits.append(Bits(f"{v}={value}"))
+		self.rawdata = bits
+	
+class sProgStateHC(InformationObj):
+	name = "sProgStateHC"
+	description = ""
+	parsemap = {"val":OperationModeHC}
+
+class sProgStateDHW(InformationObj):
+	name = "sProgStateDHW"
+	description = ""
+	parsemap = {"val":OperationModeHC}
+	
+class sProgStateFan(InformationObj):
+	name = "sProgStateFan"
+	description = ""
+	parsemap = {"val":OperationModeHC}
+
+class sBaseTimeAP0(InformationObj):
+	name = "sBaseTimeAP0"
+	description = ""
+	parsemap = {"val":"uint:32"}
+	
+class sStatusAP0(InformationObj):
+	name = "sStatusAP0"
+	description = ""
+	parsemap = {"val":"uint:8"}
+	
+class sStartTimeAP0(InformationObj):
+	name = "sStartTimeAP0"
+	description = ""
+	parsemap = {"val":"uint:32"}
+	
+class sEndTimeAP0(InformationObj):
+	name = "sEndTimeAP0"
+	description = ""
+	parsemap = {"val":"uint:32"}
+	
 class sNumberErrors(InformationObj):
 	name = "sNumberErrors"
 	description = ""

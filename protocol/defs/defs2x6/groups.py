@@ -142,7 +142,7 @@ class sProgramGroup(InformationGroup):
 	name = "S_ProgramGroup"
 	description = "Program Status"
 	command = b"\xEE"
-	parsemap = []
+	parsemap = [sOperationMode, "bin:16", sProgStateHC, sProgStateDHW, sProgStateFan, sBaseTimeAP0, sStatusAP0, sStartTimeAP0, sEndTimeAP0]
 	values = {}
 	
 	

@@ -112,7 +112,7 @@ class TCPSerialBridge(asyncio.Protocol):
 
 			if flag_read and response == DATA_READY:
 				print("\nWRITE: 10\n")
-				TCPSerialBridge.ser.ser.write(b"\x10")
+				TCPSerialBridge.ser.write(b"\x10")
 				response = TCPSerialBridge.ser.read_until(FOOTER)
 				print("CLIENT <- SERVER")
 				print(f"{self.address} <- {TCP_IP}")

@@ -266,6 +266,54 @@ class Date16():
 		return self.value
 	
 	
+class OperationModeHC(InformationObj):
+	value = 1
+	
+	def __init__(self, data=None, value=None):
+		if data is not None:
+			start = data.bytepos
+			value = data.read("uint:8")
+			if value == 1:
+				self.value = "NORMAL"
+			elif value == 2:
+				self.value = "NIGHT"
+			elif value == 3:
+				self.value = "STANDBY"
+			elif value == 4:
+				self.value = "RESTART"
+			elif value == 5:
+				self.value = "RESTART"
+
+			self.rawdata = data.bytes[start:data.bytepos]
+		else:
+			self.value = value
+			self.update()
+
+	def update(self):
+		bits = BitStream()
+		if self.value == "NORMAL":
+			value = 1
+		elif self.value == "NIGHT":
+			value = 2
+		elif self.value == "STANDBY":
+			value = 3
+		elif self.value == "RESTART":
+			value = 4
+		elif self.value == "RESTART":
+			value = 5
+		bits.append(Bits(f"uint:8={value}"))
+		self.rawdata = bits.bytes
+		
+	def update_recursive(self):
+		self.update()
+		
+	def toBytes(self):
+		return self.rawdata
+		
+	def __str__(self):
+		return self.value
+	
+	
 class Error():
 	value = 0
 	faultmap = { 0 : "n.a.",
