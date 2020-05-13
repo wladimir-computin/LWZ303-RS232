@@ -91,6 +91,11 @@ def printStatus(comm):
 		
 def printParameters(comm):
 	printRequests(comm, parameter_requests)
+	
+def printSingleParameter(comm, param):
+	group = paramToGroup(param)
+	value = group(comm.readRegister(group.command)).values[param.name]
+	print(value)
 			
 
 def main():
@@ -98,10 +103,11 @@ def main():
 	#trans = TransportSerial("/dev/ttyUSB0", 9600)
 	comm = Communicator(trans)
 	comm.start()
-	printStatus(comm)
+	#printStatus(comm)
 	#printRequests(comm, status_requests + parameter_requests)
 	#backup_all_paramters(comm)
 	#selftest_write(comm)
+	printSingleParameter(comm, p01RoomTempDay)
 	
 	
 		

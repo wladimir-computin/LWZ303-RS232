@@ -3,18 +3,21 @@ from protocol.defs.defs2x6.groups import *
 #from protocol.defs.defs2x6.status import *
 
 
-PARAM_TO_GROUP = {p01RoomTempDay : pP01P12Group,
-				  p02RoomTempNight  : pP01P12Group,
-				  p03RoomTempStandby : pP01P12Group,
-				  p04DHWsetTempDay : pP01P12Group,
-				  p05DHWsetTempNight : pP01P12Group,
-				  p06DHWsetTempStandby : pP01P12Group,
-				  p07FanStageDay : pP01P12Group,
-				  p08FanStageNight : pP01P12Group,
-				  p09FanStageStandby : pP01P12Group,
-				  p10HCTempManual : pP01P12Group,
-				  p11DHWsetTempManual : pP01P12Group,
-				  p12FanStageManual : pP01P12Group}
+PARAM_GROUPS = [pSolarGroup, pP01P12Group, pHeat1Group, pHeat2Group, pDHWGroup, pFanGroup, pRestartGroup, pDryHeatGroup, pDefrostEvaGroup, pDefrostAAGroup, pCircPumpGroup, sProgramGroup, pHeatProgGroup, pDHWProgGroup, pFanProgGroup, pTimedateGroup]
+
+STATUS_GROUPS = [sHistoryGroup, sSolarGroup, sProgramGroup, sFanGroup, sControlGroup, sDhwGroup, sHC1Group, sHC2Group, sSystemGroup, sGlobalGroup, sFirmwareGroup, sSystemGroup, sLast10ErrorsGroup]
+
+def paramToGroup(param):
+	for group in PARAM_GROUPS:
+		if param in group.parsemap:
+			return group
+	return None
+
+def statusToGroup(status):
+	for group in STATUS_GROUPS:
+		if status in group.parsemap:
+			return group
+	return None
 
 '''
 "pDefrostEva"			=> {cmd2=>"03", type =>"03pxx206", unit =>""},
