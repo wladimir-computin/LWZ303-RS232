@@ -1,6 +1,4 @@
 from protocol.defs.defs2x6.groups import *
-#from protocol.defs.defs2x6.parameters import *
-#from protocol.defs.defs2x6.status import *
 
 
 PARAM_GROUPS = [pSolarGroup, pP01P12Group, pHeat1Group, pHeat2Group, pDHWGroup, pFanGroup, pRestartGroup, pDryHeatGroup, pDefrostEvaGroup, pDefrostAAGroup, pCircPumpGroup, sProgramGroup, pHeatProgGroup, pDHWProgGroup, pFanProgGroup, pTimedateGroup]

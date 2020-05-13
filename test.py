@@ -3,6 +3,7 @@ from transport.transport_tcp import TransportTCP
 from transport.transport_serial import TransportSerial
 from protocol.communicator import Communicator
 from protocol.defs.defs2x6.defs2x6 import *
+from protocol.wrapper import *
 import json
 import time
 
@@ -103,11 +104,15 @@ def main():
 	#trans = TransportSerial("/dev/ttyUSB0", 9600)
 	comm = Communicator(trans)
 	comm.start()
+	w = Wrapper(comm)
 	#printStatus(comm)
 	#printRequests(comm, status_requests + parameter_requests)
 	#backup_all_paramters(comm)
 	#selftest_write(comm)
-	printSingleParameter(comm, p01RoomTempDay)
+	#print(w.getSingleParameter(p01RoomTempDay))
+	status = w.getBulkStatus([sDhwTemp, sFlowTempHC1, sReturnTemp, sHeatingCircuitPump, sHeatRequest, sHcStage, sDhwStage])
+	for s in status:
+		print(s)
 	
 	
 		
