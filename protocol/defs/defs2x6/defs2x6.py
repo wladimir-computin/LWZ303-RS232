@@ -1,7 +1,21 @@
 from protocol.defs.defs2x6.groups import *
-from protocol.defs.defs2x6.parameters import *
+#from protocol.defs.defs2x6.parameters import *
+#from protocol.defs.defs2x6.status import *
 
-	
+
+PARAM_TO_GROUP = {p01RoomTempDay : pP01P12Group,
+				  p02RoomTempNight  : pP01P12Group,
+				  p03RoomTempStandby : pP01P12Group,
+				  p04DHWsetTempDay : pP01P12Group,
+				  p05DHWsetTempNight : pP01P12Group,
+				  p06DHWsetTempStandby : pP01P12Group,
+				  p07FanStageDay : pP01P12Group,
+				  p08FanStageNight : pP01P12Group,
+				  p09FanStageStandby : pP01P12Group,
+				  p10HCTempManual : pP01P12Group,
+				  p11DHWsetTempManual : pP01P12Group,
+				  p12FanStageManual : pP01P12Group}
+
 '''
 "pDefrostEva"			=> {cmd2=>"03", type =>"03pxx206", unit =>""},
 "pDefrostAA"			=> {cmd2=>"04", type =>"04pxx206", unit =>""},

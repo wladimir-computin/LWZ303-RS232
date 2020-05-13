@@ -141,10 +141,10 @@
         }
     },
     {
-        "raw": "01810102020100007bdb000000000000000000",
+        "raw": "01810102020100008b36000000000000000000",
         "values": {
             "UNPARSED_1": "1000000100000001",
-            "sBaseTimeAP0": "31707",
+            "sBaseTimeAP0": "35638",
             "sEndTimeAP0": "0",
             "sOperationMode": "AUTOMATIC",
             "sProgStateDHW": "NIGHT",
@@ -225,17 +225,17 @@
         }
     },
     {
-        "raw": "00060434261400050a",
+        "raw": "000200252f1400050d",
         "values": {
             "UNPARSED_0": "00000000",
             "UNPARSED_6": "00000000",
-            "pClockDay": "10",
-            "pClockHour": "4",
-            "pClockMinutes": "52",
+            "pClockDay": "13",
+            "pClockHour": "0",
+            "pClockMinutes": "37",
             "pClockMonth": "5",
-            "pClockSeconds": "38",
+            "pClockSeconds": "47",
             "pClockYear": "20",
-            "sWeekDay": "6"
+            "sWeekDay": "2"
         }
     }
 ]

@@ -1,5 +1,5 @@
-from protocol.defs.defs import InformationGroup
 from protocol.defs.defs2x6.parameters import *
+from protocol.defs.defs2x6.status import *
 
 	
 class pFanGroup(InformationGroup):
