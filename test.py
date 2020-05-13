@@ -7,9 +7,6 @@ from protocol.wrapper import *
 import json
 import time
 
-status_requests = [sHistoryGroup, sSolarGroup, sProgramGroup, sFanGroup, sControlGroup, sDhwGroup, sHC1Group, sHC2Group, sSystemGroup, sGlobalGroup, sFirmwareGroup, sSystemGroup, sLast10ErrorsGroup]
-parameter_requests = [pSolarGroup, pP01P12Group, pHeat1Group, pHeat2Group, pDHWGroup, pFanGroup, pRestartGroup, pDryHeatGroup, pDefrostEvaGroup, pDefrostAAGroup, pCircPumpGroup, sProgramGroup, pHeatProgGroup, pDHWProgGroup, pFanProgGroup, pTimedateGroup]
-
 def selftest_update(comm):
 	requests = parameter_requests
 	commands = [g.command for g in requests]
@@ -110,9 +107,12 @@ def main():
 	#backup_all_paramters(comm)
 	#selftest_write(comm)
 	#print(w.getSingleParameter(p01RoomTempDay))
-	status = w.getBulkStatus([sDhwTemp, sFlowTempHC1, sReturnTemp, sHeatingCircuitPump, sHeatRequest, sHcStage, sDhwStage])
-	for s in status:
-		print(s)
+	#status = w.getBulkStatus([sDhwTemp, sFlowTempHC1, sReturnTemp, sHeatingCircuitPump, sHeatRequest, sHcStage, #sDhwStage])
+	#for s in status:
+	#	print(s)
+	groups = w.getBulkGroups(STATUS_GROUPS)
+	for g in groups:
+		print(g)
 	
 	
 		
