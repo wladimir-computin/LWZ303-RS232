@@ -47,6 +47,9 @@ class InformationObj(object):
 
 	def __str__(self):
 		return f"{self.name}: {self.value}{self.unit}"
+	
+	def __json__(self):
+		return self.value
 
 
 class InformationGroup(object):
@@ -105,7 +108,10 @@ class InformationGroup(object):
 				out += f" UNPARSED: {' '.join(v[i:i+8] for i in range(0, len(v), 8))}\n"
 			else:
 				out += f" {v}\n"
-		return f"Name: {self.name}\n{self.description}\n{out}" 
+		return f"Name: {self.name}\n{self.description}\n{out}"
+	
+	def __json__(self):
+		return self.values
 
 
 class FixedPOneDec8():
@@ -137,6 +143,9 @@ class FixedPOneDec8():
 	def __float__(self):
 		return self.value
 	
+	def __json__(self):
+		return float(self)
+	
 
 class FixedPOneDec16():
 	value = 0
@@ -167,6 +176,9 @@ class FixedPOneDec16():
 	def __float__(self):
 		return self.value
 	
+	def __json__(self):
+		return float(self)
+	
 	
 class FixedPTwoDec16():
 	value = 0
@@ -196,6 +208,9 @@ class FixedPTwoDec16():
 	
 	def __float__(self):
 		return self.value
+	
+	def __json__(self):
+		return float(self)
 	
 	
 class Time16():
@@ -230,6 +245,9 @@ class Time16():
 	def __float__(self):
 		return self.value
 	
+	def __json__(self):
+		return str(self)
+	
 	
 class Date16():
 	value = 0
@@ -262,6 +280,9 @@ class Date16():
 	
 	def __float__(self):
 		return self.value
+	
+	def __json__(self):
+		return str(self)
 	
 	
 class OperationModeHC(InformationObj):
@@ -310,6 +331,9 @@ class OperationModeHC(InformationObj):
 		
 	def __str__(self):
 		return self.value
+	
+	def __json__(self):
+		return str(self)
 	
 	
 class Error():
@@ -376,3 +400,6 @@ class Error():
 	
 	def __float__(self):
 		return self.value
+	
+	def __json__(self):
+		return str(self)

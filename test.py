@@ -4,8 +4,17 @@ from transport.transport_serial import TransportSerial
 from protocol.communicator import Communicator
 from protocol.defs.defs2x6.defs2x6 import *
 from protocol.wrapper import *
-import json
 import time
+import json
+from json import JSONEncoder
+
+def _default(self, obj):
+    return getattr(obj.__class__, "__json__", _default.default)(obj)
+
+_default.default = JSONEncoder().default
+JSONEncoder.default = _default
+
+#######################################
 
 def selftest_update(comm):
 	requests = parameter_requests
@@ -72,28 +81,6 @@ def selftest_write(comm):
 					print("\nOld Value restored, write works as expected!\n")
 					return True
 	return False
-				
-			
-			
-		
-def printRequests(comm, requests):
-	requests = requests
-	commands = [g.command for g in requests]
-	response = comm.readRegisterBulk(commands)
-	results = list(map(lambda x, y: x(y), requests, response))
-	for r in results:
-		print(r)
-		
-def printStatus(comm):
-	printRequests(comm, status_requests)
-		
-def printParameters(comm):
-	printRequests(comm, parameter_requests)
-	
-def printSingleParameter(comm, param):
-	group = paramToGroup(param)
-	value = group(comm.readRegister(group.command)).values[param.name]
-	print(value)
 			
 
 def main():
@@ -107,15 +94,18 @@ def main():
 	#backup_all_paramters(comm)
 	#selftest_write(comm)
 	#print(w.getSingleParameter(p01RoomTempDay))
-	#status = w.getBulkStatus([sDhwTemp, sFlowTempHC1, sReturnTemp, sHeatingCircuitPump, sHeatRequest, sHcStage, #sDhwStage])
-	#for s in status:
-	#	print(s)
+	#status = w.getBulkStatus([sDhwTemp, sFlowTempHC1, sReturnTemp, sHeatingCircuitPump, sHeatRequest, sHcStage, sDhwStage])
+	#for k,v in status.items():
+		#print(v)
 	groups = w.getBulkGroups(STATUS_GROUPS)
-	for g in groups:
-		print(g)
-	
-	
+	#for k,v in groups.items():
+	#	print(v)
 		
+	print(json.dumps(groups, indent=4))
+	#print(w.getSingleGroup(sControlGroup))
+	
+	
+	
 	comm.stop()
 
 if __name__== "__main__":

@@ -56,14 +56,6 @@ class pSolarGroup(InformationGroup):
 	command = b"\x08"
 	parsemap = [p80EnableSolar, p81DiffTempSolarLoading, p82DelayCompStartSolar, p84DHWTempSolarMode, HystDiffTempSolar, CollectLimitTempSolar]
 	values = {}
-	
-
-class sHistoryGroup(InformationGroup):
-	name = "S_HistoryGroup"
-	description = "History Status"
-	command = b"\x09"
-	parsemap = [sOperatingHours1, sOperatingHours2, sHeatingHours, sDhwHours, sCoolingHours]
-	values = {}
 
 
 class pCircPumpGroup(InformationGroup):
@@ -121,20 +113,20 @@ class pDryHeatGroup(InformationGroup):
 	parsemap = [p70StartDryHeat, p71BaseTemp, p72PeakTemp, p73TempDuration, p74TempIncrease]
 	values = {}
 	
-
-class sSolarGroup(InformationGroup):
-	name = "S_SolarGroup"
-	description = "Solar Status"
-	command = b"\x16"
-	parsemap = [sCollectorTemp, sDhwTemp, sFlowTemp, sEdSolPump]
-	values = {}
-	
 	
 class pP01P12Group(InformationGroup):
 	name = "P_P01-P12Group"
 	description = "P01-P12 Parameters"
 	command = b"\x17"
 	parsemap = [p01RoomTempDay, p02RoomTempNight, p03RoomTempStandby, p04DHWsetTempDay, p05DHWsetTempNight, p06DHWsetTempStandby, p07FanStageDay, p08FanStageNight, p09FanStageStandby, p10HCTempManual, p11DHWsetTempManual, p12FanStageManual]
+	values = {}
+	
+
+class sSolarGroup(InformationGroup):
+	name = "S_SolarGroup"
+	description = "Solar Status"
+	command = b"\x16"
+	parsemap = [sCollectorTemp, sDhwTemp, sFlowTemp, sEdSolPump]
 	values = {}
 	
 	
@@ -151,6 +143,14 @@ class sFanGroup(InformationGroup):
 	description = "Fan Status"
 	command = b"\xE8"
 	parsemap = [sAutoFanCalib, "bin:64", sAirflowTolerance, sInputFanSpeedCal, sOutputFanSpeedCal, sInputFanAirflowCal, sOutputFanAirflowCal, sInputFanSpeed0, sOutputFanSpeed0, sInputFanSpeed200, sOutputFanSpeed200, sAirflowCalibrationInterval, sTimeToCalibration, sInputFanSpeed, sOutputFanSpeed, sInputFanAirflowSet, sOutputFanAirflowSet, sInputFanSpeedTarget, sOutputFanSpeedTarget]
+	values = {}
+	
+	
+class sHistoryGroup(InformationGroup):
+	name = "S_HistoryGroup"
+	description = "History Status"
+	command = b"\x09"
+	parsemap = [sOperatingHours1, sOperatingHours2, sHeatingHours, sDhwHours, sCoolingHours]
 	values = {}
 	
 	

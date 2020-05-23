@@ -21,7 +21,7 @@ class Wrapper:
 	def getBulkGroups(self, groups):
 		commands = [g.command for g in groups]
 		response = self.comm.readRegisterBulk(commands)
-		results = list(map(lambda x, y: x(y), groups, response))
+		results = dict(map(lambda x, y: (x.name, x(y)), groups, response))
 		return results
 	
 	def getBulkParameters(self, parameters):
@@ -33,11 +33,9 @@ class Wrapper:
 			if g not in groups:
 				groups.append(g)
 		results1 = self.getBulkGroups(groups)
-		results2 = []
+		results2 = {}
 		for p,g in pmap.items():
-			for group in results1:
-				if isinstance(group, g):
-					results2.append(group.values[p.name])
+			results2[p.name] = results1[g.name].values[p.name]
 		return results2
 	
 	def getBulkStatus(self, status):
@@ -49,11 +47,9 @@ class Wrapper:
 			if g not in groups:
 				groups.append(g)
 		results1 = self.getBulkGroups(groups)
-		results2 = []
+		results2 = {}
 		for s,g in smap.items():
-			for group in results1:
-				if isinstance(group, g):
-					results2.append(group.values[s.name])
+			results2[s.name] = results1[g.name].values[s.name]
 		return results2
 			
 	def setSingleParameter(self, param, value):

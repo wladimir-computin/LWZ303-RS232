@@ -652,6 +652,7 @@ class sBoostBlockTimeAfterPumpStart(InformationObj):
 	name = "sBoostBlockTimeAfterPumpStart"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "s"
 	
 class sBoostBlockTimeAfterHD(InformationObj):
 	name = "sBoostBlockTimeAfterHD"
@@ -773,6 +774,9 @@ class sError(InformationObj):
 		for k,v in self.values.items():
 			out += f" {k}: {v}\n" 
 		return f"{self.name}:\n{out}"
+	
+	def __json__(self):
+		return self.values
 	
 class sError1(sError):
 	name = "sError1"
