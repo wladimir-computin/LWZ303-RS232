@@ -182,7 +182,7 @@ class sHC1Group(InformationGroup):
 	name = "S_HC1"
 	description = "Heat Circle 1 Status"
 	command = b"\xF4"
-	parsemap = [sOutsideTemp,"bin:16", sReturnTemp, sIntegralHeat, sFlowTemp, sHeatTargetTemp, sHeatTemp, sOnHysteresisNo, sOffHysteresisNo, sHcBoosterStage, sSeasonMode, "bin:16", sIntegralSwitch, sHcOpMode, "bin:16", "bin:16", "bin:16", "bin:16", sInsideTemp, "bin:16", "bin:16", sRoomTargetTemp ]
+	parsemap = [sOutsideTemp,"bin:16", sReturnTemp, sIntegralHeat, sFlowTemp, sHeatTargetTemp, sHeatTemp, sOnHysteresisNo, sOffHysteresisNo, sHcBoosterStage, sSeasonMode, "bin:16", sIntegralSwitch, sHcOpMode, "bin:16", "bin:16", "bin:16", "bin:16", "bin:16", "bin:16", "bin:16", sRoomTargetTemp ]
 	values = {}
 	
 	
