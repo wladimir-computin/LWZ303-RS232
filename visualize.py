@@ -5,7 +5,7 @@ from protocol.communicator import Communicator
 from protocol.defs.defs2x6.defs2x6 import *
 from protocol.wrapper import *
 import time
-import datetime
+from datetime import datetime
 import signal
 import json
 from json import JSONEncoder
@@ -72,24 +72,23 @@ def plot(table, stufftoplot, plotname):
 	db = dataset.connect(f"sqlite:///{table}")
 	
 	y_axis = {}
-	x = [datetime.datetime.strptime(d,"%Y.%m.%d_%H:%M:%S.json") for d in jsondata.keys()]
+	statement = f"SELECT timestamp FROM {sGlobalGroup.name}"
+	x = [datetime.strptime(v["timestamp"], '%Y-%m-%d %H:%M:%S.%f') for v in db.query(statement)]
 
 	for stuff in stufftoplot:
-		y_axis[stuff] = []
-	
-	for v in jsondata.values():
-		for stuff in stufftoplot:
-			y_axis[stuff].append(v[statusToGroup(stuff).name][stuff.name])
+		statement = f"SELECT {stuff.name} FROM {statusToGroup(stuff).name}"
+		db_data = [v[stuff.name] for v in db.query(statement)]
+		y_axis[stuff] = db_data
 	
 	plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%Y %H:%M'))
 	plt.gca().xaxis.set_major_locator(mdates.HourLocator(byhour = list(range(0,24,3))))
 	
 	# plotting the lines points  
 	for stuff in stufftoplot:
-		try:
-			y_axis[stuff] = savgol_filter(y_axis[stuff], 15, 2)
-		except:
-			pass
+		#try:
+			#y_axis[stuff] = savgol_filter(y_axis[stuff], 15, 2)
+		#except:
+			#pass
 		plt.plot(x, y_axis[stuff], label = f"{stuff.name} ({stuff.unit})")
 		
 	plt.gcf().autofmt_xdate()
@@ -120,6 +119,12 @@ def main():
 	#plot(jsons, [sInputVentilatorSpeed, sOutputVentilatorSpeed, sInputVentilatorPower, sOutputVentilatorPower, sCompressor], "Fan speed over time")
 	#plot(jsons, [sFlowTemp, sReturnTemp, sDhwTemp, sHeatingCircuitPump], "HC1")
 	#plot(jsons, [sCollectorTemp], "TEST")
+	
+	plot("log/status_2020.db", [sOutsideTempFiltered, sInsideTemp], "Temperature over time")
+	plot("log/status_2020.db", [sDhwTemp, sCollectorTemp, sCompressor, sHcOpMode], "DHW")
+	plot("log/status_2020.db", [sInputVentilatorSpeed, sOutputVentilatorSpeed, sInputVentilatorPower, sOutputVentilatorPower, sCompressor], "Fan speed over time")
+	plot("log/status_2020.db", [sFlowTemp, sReturnTemp, sDhwTemp, sHeatingCircuitPump], "HC1")
+	plot("log/status_2020.db", [sCollectorTemp], "TEST")
 		
 
 if __name__== "__main__":
