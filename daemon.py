@@ -4,6 +4,7 @@ from transport.transport_serial import TransportSerial
 from protocol.communicator import Communicator
 from protocol.defs.defs2x6.defs2x6 import *
 from protocol.wrapper import *
+from datetime import datetime
 import time
 import signal
 import json
@@ -24,31 +25,34 @@ STUFF = [sGlobalGroup, sControlGroup, sHC1Group, sDhwGroup, sSolarGroup, sFanGro
 class Logger:
 	
 	def start(self):
-		trans = TransportTCP("192.168.178.201", 7777)
-		#self.trans = TransportSerial("/dev/ttyUSB0", 9600)
+		#trans = TransportTCP("192.168.178.201", 7777)
+		trans = TransportSerial("/dev/ttyUSB0", 9600)
 		self.comm = Communicator(trans)
 		self.comm.start()
 		self.w = Wrapper(self.comm)
-		db = dataset.connect(f"sqlite://log/status_{time.strftime('%Y', time.localtime())}.db")
+		self.db = dataset.connect(f"sqlite:///log/status_{datetime.now().year}.db")
 		
 	def loop(self):
-		filename = time.strftime("%Y.%m.%d_%H:%M:%S.json", time.localtime())
-		with open(f"log/{filename}", "w") as f:
-			groups = self.w.getBulkGroups(STUFF)
-			for name,group in groups.items():
-				print(group)
-				
-			dbdata = json.loads(json.dumps(groups))
-			db.begin()
+		#filename = time.strftime("%Y.%m.%d_%H:%M:%S.json", time.localtime())
+		#with open(f"log/{filename}", "w") as f:
+		groups = self.w.getBulkGroups(STUFF)
+		for name,group in groups.items():
+			print(group)
 			
-			try:
-				now = time.localtime()
-				for name,group in dbdata.items():
-					db[name].insert({"timestamp" : now})
-					db[name].insert(group)
-				db.commit()
-			except:
-				db.rollback()
+		dbdata = json.loads(json.dumps(groups))
+		self.db.begin()
+		try:
+			now = datetime.now().replace(microsecond=0) 
+			for name,group in dbdata.items():
+				ins = {}
+				ins.update({"timestamp" : now})
+				ins.update(group)
+				self.db[name]
+				self.db[name].insert(ins)
+			self.db.commit()
+		except Exception as x:
+			print(x)
+			self.db.rollback()
 			#json.dump(groups, f, indent=4)
 		
 	def end(self):
