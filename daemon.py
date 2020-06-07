@@ -47,7 +47,6 @@ class Logger:
 				ins = {}
 				ins.update({"timestamp" : now})
 				ins.update(group)
-				self.db[name]
 				self.db[name].insert(ins)
 			self.db.commit()
 		except Exception as x:
