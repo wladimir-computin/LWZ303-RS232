@@ -9,6 +9,7 @@ import signal
 import json
 from json import JSONEncoder
 import os
+import dataset
 
 def _default(self, obj):
     return getattr(obj.__class__, "__json__", _default.default)(obj)
@@ -28,14 +29,27 @@ class Logger:
 		self.comm = Communicator(trans)
 		self.comm.start()
 		self.w = Wrapper(self.comm)
+		db = dataset.connect(f"sqlite://log/status_{time.strftime('%Y', time.localtime())}.db")
 		
 	def loop(self):
 		filename = time.strftime("%Y.%m.%d_%H:%M:%S.json", time.localtime())
 		with open(f"log/{filename}", "w") as f:
 			groups = self.w.getBulkGroups(STUFF)
-			for k,v in groups.items():
-				print(v)
-			json.dump(groups, f, indent=4)
+			for name,group in groups.items():
+				print(group)
+				
+			dbdata = json.loads(json.dumps(groups))
+			db.begin()
+			
+			try:
+				now = time.localtime()
+				for name,group in dbdata.items():
+					db[name].insert({"timestamp" : now})
+					db[name].insert(group)
+				db.commit()
+			except:
+				db.rollback()
+			#json.dump(groups, f, indent=4)
 		
 	def end(self):
 		self.comm.stop()

@@ -97,9 +97,9 @@ def main():
 	#status = w.getBulkStatus([sDhwTemp, sFlowTempHC1, sReturnTemp, sHeatingCircuitPump, sHeatRequest, sHcStage, sDhwStage])
 	#for k,v in status.items():
 		#print(v)
-	groups = w.getBulkGroups(STATUS_GROUPS)
-	#for k,v in groups.items():
-	#	print(v)
+	groups = w.getBulkGroups(STATUS_GROUPS + PARAM_GROUPS)
+	for k,v in groups.items():
+		print(v)
 		
 	print(json.dumps(groups, indent=4))
 	#print(w.getSingleGroup(sControlGroup))

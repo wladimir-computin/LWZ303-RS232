@@ -12,6 +12,7 @@ from json import JSONEncoder
 import os
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+from scipy.signal import savgol_filter
 
 def _default(self, obj):	
     return getattr(obj.__class__, "__json__", _default.default)(obj)
@@ -44,6 +45,10 @@ def plot(jsondata, stufftoplot, plotname):
 	
 	# plotting the lines points  
 	for stuff in stufftoplot:
+		try:
+			y_axis[stuff] = savgol_filter(y_axis[stuff], 15, 2)
+		except:
+			pass
 		plt.plot(x, y_axis[stuff], label = f"{stuff.name} ({stuff.unit})")
 		
 	plt.gcf().autofmt_xdate()
@@ -69,11 +74,11 @@ def main():
 		jsons[os.path.basename(f.name)] = entry
 		
 	
-	#plot(jsons, [sOutsideTempFiltered, sInsideTemp], "Temperature over time")
-	#plot(jsons, [sDhwTemp, sCollectorTemp, sCompressor], "DHW")
-	#plot(jsons, [sInputVentilatorSpeed, sOutputVentilatorSpeed, sInputVentilatorPower, sOutputVentilatorPower, sCompressor], "Fan speed over time")
-	#plot(jsons, [sFlowTemp, sReturnTemp, sDhwTemp, sHeatingCircuitPump], "HC1")
-	plot(jsons, [sDhwPump], "TEST")
+	plot(jsons, [sOutsideTempFiltered, sInsideTemp], "Temperature over time")
+	plot(jsons, [sDhwTemp, sCollectorTemp, sCompressor, sHcOpMode], "DHW")
+	plot(jsons, [sInputVentilatorSpeed, sOutputVentilatorSpeed, sInputVentilatorPower, sOutputVentilatorPower, sCompressor], "Fan speed over time")
+	plot(jsons, [sFlowTemp, sReturnTemp, sDhwTemp, sHeatingCircuitPump], "HC1")
+	plot(jsons, [sCollectorTemp], "TEST")
 		
 
 if __name__== "__main__":
