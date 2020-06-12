@@ -43,7 +43,7 @@ class Logger:
 		try:
 			now = datetime.now().replace(microsecond=0)
 			if self.now is None or self.now.month != now.month:
-				self.db = dataset.connect(f"sqlite:///log/status_{now.strftime("%Y_%m")}.db")
+				self.db = dataset.connect(f"sqlite:///log/status_{now.strftime('%Y_%m')}.db")
 			self.now = now
 			self.db.begin()
 			for name,group in dbdata.items():
