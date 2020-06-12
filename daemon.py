@@ -30,7 +30,7 @@ class Logger:
 		self.comm = Communicator(trans)
 		self.comm.start()
 		self.w = Wrapper(self.comm)
-		self.db = dataset.connect(f"sqlite:///log/status_{datetime.now().year}.db")
+		self.now = None
 		
 	def loop(self):
 		#filename = time.strftime("%Y.%m.%d_%H:%M:%S.json", time.localtime())
@@ -40,12 +40,15 @@ class Logger:
 			print(group)
 			
 		dbdata = json.loads(json.dumps(groups))
-		self.db.begin()
 		try:
-			now = datetime.now().replace(microsecond=0) 
+			now = datetime.now().replace(microsecond=0)
+			if self.now is None or self.now.month != now.month:
+				self.db = dataset.connect(f"sqlite:///log/status_{now.strftime("%Y_%m")}.db"
+			self.now = now
+			self.db.begin()
 			for name,group in dbdata.items():
 				ins = {}
-				ins.update({"timestamp" : now})
+				ins.update({"timestamp" : self.now})
 				ins.update(group)
 				self.db[name].insert(ins)
 			self.db.commit()
