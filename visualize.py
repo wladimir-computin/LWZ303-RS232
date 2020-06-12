@@ -120,11 +120,13 @@ def main():
 	#plot(jsons, [sFlowTemp, sReturnTemp, sDhwTemp, sHeatingCircuitPump], "HC1")
 	#plot(jsons, [sCollectorTemp], "TEST")
 	
-	plot("log/status_2020.db", [sOutsideTempFiltered, sInsideTemp], "Temperature over time")
-	plot("log/status_2020.db", [sDhwTemp, sCollectorTemp, sCompressor, sHcOpMode], "DHW")
-	plot("log/status_2020.db", [sInputVentilatorSpeed, sOutputVentilatorSpeed, sInputVentilatorPower, sOutputVentilatorPower, sCompressor], "Fan speed over time")
-	plot("log/status_2020.db", [sFlowTemp, sReturnTemp, sDhwTemp, sHeatingCircuitPump], "HC1")
-	plot("log/status_2020.db", [sCollectorTemp], "TEST")
+	db = f"log/status_{datetime.now().strftime('%Y_%m')}.db"
+	
+	plot(db, [sOutsideTempFiltered, sInsideTemp], "Temperature over time")
+	plot(db, [sDhwTemp, sCollectorTemp, sCompressor, sHcOpMode], "DHW")
+	plot(db, [sInputVentilatorSpeed, sOutputVentilatorSpeed, sInputVentilatorPower, sOutputVentilatorPower, sCompressor], "Fan speed over time")
+	plot(db, [sFlowTemp, sReturnTemp, sDhwTemp, sHeatingCircuitPump], "HC1")
+	plot(db, [sCollectorTemp], "TEST")
 		
 
 if __name__== "__main__":
