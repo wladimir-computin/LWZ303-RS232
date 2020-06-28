@@ -107,20 +107,20 @@ class Communicator:
 		return responses
 			
 				
-	def writeRegister(self, reg, val):
-		original = self.readRegister(reg, [FLAG_HELLO, FLAG_READ, FLAG_RESET])
+	def writeRegister(self, reg, val, flags=[FLAG_HELLO, FLAG_READ, FLAG_RESET]):
+		original = self.readRegister(reg, flags)
 		if original:
 			print(f"Original: {reg.hex() + original.hex()}")
-			print(f"New ;     {reg.hex() + val.hex()}")
+			print(f"New:      {reg.hex() + val.hex()}")
 			
 			try:
 				request = self.prepareRequest(HEADER_WRITE, reg + val)
 				print(f"Sending: {request.hex()}")
 				
 				if self.transport is not None:
-					tried = 0
+					#tried = 0
 					#while tried < self.MAX_RETRYS:
-					tried += 1
+					#tried += 1
 					response = self.transport.sendWithFlags([FLAG_READ, FLAG_RESET], request)
 					print(f"Response: {response.hex()}")
 					if response.startswith(DATA_READY + HEADER_WRITE_OK) and response.endswith(FOOTER):

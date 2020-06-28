@@ -1,11 +1,17 @@
 from protocol.defs.defs2x6.defs2x6 import *
+from transport.transport_common import FLAG_HELLO, FLAG_READ, FLAG_RESET
+import time
 
 class Wrapper:
 	def __init__(self, comm):
 		self.comm = comm
 		
-	def getSingleGroup(self, group):
-		out = group(self.comm.readRegister(group.command))
+	def getSingleGroup(self, group, keepalive=False):
+		if keepalive:
+			flags = [FLAG_HELLO, FLAG_READ, FLAG_RESET]
+		else:
+			flags = [FLAG_HELLO, FLAG_READ]
+		out = group(self.comm.readRegister(group.command, flags=flags))
 		return out
 	
 	def getSingleParameter(self, param):
@@ -53,13 +59,15 @@ class Wrapper:
 		return results2
 			
 	def setSingleParameter(self, param, value):
-		reg = self.getSingleGroup(paramToGroup(param))
+		group = paramToGroup(param)
+		reg = self.getSingleGroup(group, keepalive=True)
 		if isinstance(reg.values[param.name].value, InformationObj):
 			reg.values[param.name].value.value = value
 		else:
 			reg.values[param.name].value = value
 		reg.update_recursive()
-		return group(self.comm.writeRegister(reg.command, reg.toBytes())).value(param.name)
+		print(reg)
+		return group(self.comm.writeRegister(reg.command, reg.toBytes(), flags=[FLAG_READ, FLAG_RESET])).values[param.name]
 		
 	def setSingleGroup(self, group, value):
 		#too dangerous

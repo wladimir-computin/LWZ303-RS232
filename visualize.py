@@ -68,28 +68,29 @@ JSONEncoder.default = _default
 #	# function to show the plot 
 #	plt.show()
 	
-def plot(table, stufftoplot, plotname):
-	db = dataset.connect(f"sqlite:///{table}")
+def plot(db, stufftoplot, plotname, from_date = datetime(2000, 1, 1), to_date = datetime.now()):
+	
+	statement = f"SELECT timestamp FROM {sGlobalGroup.name} WHERE timestamp BETWEEN DATETIME(:a) AND DATETIME(:b)"
+	timestamps = db.query(statement, a=from_date, b=to_date)
+	#timestamps = db[sGlobalGroup.name].find(timestamp={'between': [from_date, to_date]})
+	x_axis = [datetime.strptime(v["timestamp"], "%Y-%m-%d %H:%M:%S.%f") for v in timestamps]
 	
 	y_axis = {}
-	statement = f"SELECT timestamp FROM {sGlobalGroup.name}"
-	x = [datetime.strptime(v["timestamp"], '%Y-%m-%d %H:%M:%S.%f') for v in db.query(statement)]
-
 	for stuff in stufftoplot:
-		statement = f"SELECT {stuff.name} FROM {statusToGroup(stuff).name}"
-		db_data = [v[stuff.name] for v in db.query(statement)]
-		y_axis[stuff] = db_data
+		statement = f"SELECT {stuff.name} FROM {statusToGroup(stuff).name} WHERE timestamp BETWEEN DATETIME(:a) AND DATETIME(:b)"
+		data = db.query(statement, a=from_date, b=to_date)
+		y_axis[stuff] = [v[stuff.name] for v in data]
 	
 	plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%d.%m.%Y %H:%M'))
 	plt.gca().xaxis.set_major_locator(mdates.HourLocator(byhour = list(range(0,24,3))))
 	
 	# plotting the lines points  
 	for stuff in stufftoplot:
-		#try:
-			#y_axis[stuff] = savgol_filter(y_axis[stuff], 15, 2)
-		#except:
-			#pass
-		plt.plot(x, y_axis[stuff], label = f"{stuff.name} ({stuff.unit})")
+		try:
+			y_axis[stuff] = savgol_filter(y_axis[stuff], 15, 2)
+		except:
+			pass
+		plt.plot(x_axis, y_axis[stuff], label = f"{stuff.name} ({stuff.unit})")
 		
 	plt.gcf().autofmt_xdate()
 	plt.ylim(bottom=0)
@@ -120,13 +121,16 @@ def main():
 	#plot(jsons, [sFlowTemp, sReturnTemp, sDhwTemp, sHeatingCircuitPump], "HC1")
 	#plot(jsons, [sCollectorTemp], "TEST")
 	
-	db = f"log/status_{datetime.now().strftime('%Y_%m')}.db"
+	db_url = f"sqlite:///log/status_{datetime.now().strftime('%Y_%m')}.db"
+	from_date = datetime(2020, 6, 25)
+	to_date = datetime.now()
 	
-	plot(db, [sOutsideTempFiltered, sInsideTemp], "Temperature over time")
-	plot(db, [sDhwTemp, sCollectorTemp, sCompressor, sHcOpMode], "DHW")
-	plot(db, [sInputVentilatorSpeed, sOutputVentilatorSpeed, sInputVentilatorPower, sOutputVentilatorPower, sCompressor], "Fan speed over time")
-	plot(db, [sFlowTemp, sReturnTemp, sDhwTemp, sHeatingCircuitPump], "HC1")
-	plot(db, [sCollectorTemp], "TEST")
+	with dataset.connect(db_url) as db:
+		plot(db, [sOutsideTempFiltered, sInsideTemp], "Temperature over time", from_date, to_date)
+		plot(db, [sDhwTemp, sCollectorTemp, sCompressor, sHcOpMode], "DHW", from_date, to_date)
+		plot(db, [sInputVentilatorSpeed, sOutputVentilatorSpeed, sInputVentilatorPower, sOutputVentilatorPower, sCompressor], "Fan speed over time", from_date, to_date)
+		plot(db, [sFlowTemp, sReturnTemp, sDhwTemp, sHeatingCircuitPump], "HC1", from_date, to_date)
+		plot(db, [sCollectorTemp], "TEST", from_date, to_date)
 		
 
 if __name__== "__main__":

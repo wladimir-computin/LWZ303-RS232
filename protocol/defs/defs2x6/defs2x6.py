@@ -1,7 +1,7 @@
 from protocol.defs.defs2x6.groups import *
 
 
-PARAM_GROUPS = [pSolarGroup, pP01P12Group, pHeat1Group, pHeat2Group, pDHWGroup, pFanGroup, pRestartGroup, pDryHeatGroup, pDefrostEvaGroup, pDefrostAAGroup, pCircPumpGroup, pHeatProgGroup, pDHWProgGroup, pFanProgGroup, pTimedateGroup]
+PARAM_GROUPS = [pP01P12Group, pHeat1Group, pHeat2Group, pDHWGroup, pFanGroup, pRestartGroup, pDryHeatGroup, pSolarGroup, pDefrostEvaGroup, pDefrostAAGroup, pCircPumpGroup, pHeatProgGroup, pDHWProgGroup, pFanProgGroup, pTimedateGroup]
 
 STATUS_GROUPS = [sHistoryGroup, sSolarGroup, sProgramGroup, sFanGroup, sControlGroup, sDhwGroup, sHC1Group, sHC2Group, sSystemGroup, sGlobalGroup, sFirmwareGroup, sLast10ErrorsGroup]
 

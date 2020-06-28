@@ -102,17 +102,17 @@ class p18RoomInfluenceHC2(InformationObj):
 	parsemap = {"val":"uint:8"}
 	unit = "%"
 	
-class p19LowEndHC2(InformationObj):
-	name = "p19LowEndHC2"
+class p19FlowProportionHC1(InformationObj):
+	name = "p19FlowProportionHC1"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
-	unit = "K"
+	unit = "%"
 	
-class p20LowEndHC2(InformationObj):
-	name = "p20LowEndHC2"
+class p20FlowProportionHC2(InformationObj):
+	name = "p20FlowProportionHC2"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
-	unit = "K"
+	unit = "%"
 	
 class pMaxSetHeatFlowTempHC1(InformationObj):
 	name = "pMaxSetHeatFlowTempHC1"
@@ -224,100 +224,120 @@ class p34TempLimitBoostDHW(InformationObj):
 	name = "p34TempLimitBoostDHW"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
-	unit = ""
+	unit = "°C"
 	
 class p35PasteurisationInterval(InformationObj):
 	name = "p35PasteurisationInterval"
 	description = ""
 	parsemap = {"val":"uint:8"}
-	unit = ""
+	unit = "d"
 	
 class p36MaxDurationDHWLoad(InformationObj):
 	name = "p36MaxDurationDHWLoad"
 	description = ""
 	parsemap = {"val":"uint:8"}
-	unit = ""
+	unit = "h"
 	
 class pPasteurisationTemp(InformationObj):
 	name = "pPasteurisationTemp"
 	description = ""
-	parsemap = {"val":"uint:16"}
+	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
 class pMaxBoostStagesDHW(InformationObj):
 	name = "pMaxBoostStagesDHW"
 	description = ""
 	parsemap = {"val":"uint:8"}
+	
+class pMaxHeatFlowTempDHW(InformationObj):
+	name = "pMaxHeatFlowTempDHW"
+	description = ""
+	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
 
 class p37Fanstage1AirflowInlet(InformationObj):
 	name = "p37Fanstage1AirflowInlet"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "m³/h"
 	
 class p38Fanstage2AirflowInlet(InformationObj):
 	name = "p38Fanstage2AirflowInlet"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "m³/h"
 
 class p39Fanstage3AirflowInlet(InformationObj):
 	name = "p39Fanstage3AirflowInlet"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "m³/h"
 	
 class p40Fanstage1AirflowOutlet(InformationObj):
 	name = "p40Fanstage1AirflowOutlet"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "m³/h"
 	
 class p41Fanstage2AirflowOutlet(InformationObj):
 	name = "p41Fanstage2AirflowOutlet"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "m³/h"
 	
 class p42Fanstage3AirflowOutlet(InformationObj):
 	name = "p42Fanstage3AirflowOutlet"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "m³/h"
 
 class p43UnschedVent3(InformationObj):
 	name = "p43UnschedVent3"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "min"
 	
 class p44UnschedVent2(InformationObj):
 	name = "p44UnschedVent2"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "min"
 	
 class p45UnschedVent1(InformationObj):
 	name = "p45UnschedVent1"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "min"
 	
 class p46UnschedVent0(InformationObj):
 	name = "p46UnschedVent0"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "min"
 	
 class pUpTempLimitDefrostEvaporatorEnd(InformationObj):
 	name = "pUpTempLimitDefrostEvaporatorEnd"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "°C"
 	
 class pMaxTimeDefrostEvaporator(InformationObj):
 	name = "pMaxTimeDefrostEvaporator"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "min"
 	
 class pLimitTempCondenserElectBoost(InformationObj):
 	name = "pLimitTempCondenserElectBoost"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "°C"
 	
 class pLimitTempCondenserDefrostTerm(InformationObj):
 	name = "pLimitTempCondenserDefrostTerm"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "°C"
 	
 class p47CompressorRestartDelay(InformationObj):
 	name = "p47CompressorRestartDelay"
@@ -335,16 +355,19 @@ class pMaxDefrostDurationAAExchanger(InformationObj):
 	name = "pMaxDefrostDurationAAExchanger"
 	description = ""
 	parsemap = {"val":"uint:8"}
+	unit = "min"
 	
 class pDefrostStartThreshold(InformationObj):
 	name = "pDefrostStartThreshold"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "%"
 	
 class pVolumeFlowFilterReplacement(InformationObj):
 	name = "pVolumeFlowFilterReplacement"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "%"
 	
 class p49SummerModeTemp(InformationObj):
 	name = "p49SummerModeTemp"
@@ -362,31 +385,37 @@ class p54MinPumpCycles(InformationObj):
 	name = "p54MinPumpCycles"
 	description = ""
 	parsemap = {"val":"uint:8"}
+	unit = "/day"
 	
 class p55MaxPumpCycles(InformationObj):
 	name = "p55MaxPumpCycles"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "/day"
 	
 class p56OutTempMaxPumpCycles(InformationObj):
 	name = "p56OutTempMaxPumpCycles"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "°C"
 	
 class p57OutTempMinPumpCycles(InformationObj):
 	name = "p57OutTempMinPumpCycles"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "°C"
 	
 class p58SuppressTempCaptPumpStart(InformationObj):
 	name = "p58SuppressTempCaptPumpStart"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "s"
 	
 class p59RestartBeforeSetbackEnd(InformationObj):
 	name = "p59RestartBeforeSetbackEnd"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
+	unit = "min"
 	
 class p70StartDryHeat(InformationObj):
 	name = "p70StartDryHeat"
@@ -409,11 +438,13 @@ class p73TempDuration(InformationObj):
 	name = "p73TempDuration"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "d"
 	
 class p74TempIncrease(InformationObj):
 	name = "p74TempIncrease"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
+	unit = "K/day"
 	
 class p75PassiveCooling(InformationObj):
 	name = "p75PassiveCooling"
@@ -429,11 +460,13 @@ class p78DualModePoint(InformationObj):
 	name = "p78DualModePoint"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
 	
 class p79BoosterTimeoutHC(InformationObj):
 	name = "p79BoosterTimeoutHC"
 	description = ""
 	parsemap = {"val":"uint:8"}	 
+	unit = "min"
 	
 class p80EnableSolar(InformationObj):
 	name = "p80EnableSolar"
@@ -450,11 +483,18 @@ class p82DelayCompStartSolar(InformationObj):
 	name = "p82DelayCompStartSolar"
 	description = ""
 	parsemap = {"val":"uint:8"}
+	unit = "min"
 	
-class p84DHWTempSolarMode(InformationObj):
-	name = "p84DHWTempSolarMode"
+class p83DHWTempSolarMode(InformationObj):
+	name = "p83DHWTempSolarMode"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
+	unit = "°C"
+	
+class p84EnableDHWBuffer(InformationObj):
+	name = "p84EnableDHWBuffer"
+	description = ""
+	parsemap = {"val":"uint:8"}
 	
 class HystDiffTempSolar(InformationObj):
 	name = "HystDiffTempSolar"
@@ -467,6 +507,11 @@ class CollectLimitTempSolar(InformationObj):
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
+	
+class p89DHWMode(InformationObj):
+	name = "p89DHWMode"
+	description = ""
+	parsemap = {"val":"uint:8"}
 
 class pProgHC1StartTime(InformationObj):
 	name = "pProgHC1StartTime"

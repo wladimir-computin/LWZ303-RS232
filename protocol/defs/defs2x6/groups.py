@@ -30,7 +30,7 @@ class pHeat1Group(InformationGroup):
 	name = "P_Heat1Group"
 	description = "Heat1 Parameters"
 	command = b"\x05"
-	parsemap = [p13GradientHC1, p14LowEndHC1, p15RoomInfluenceHC1, p16GradientHC2, p17LowEndHC2, p18RoomInfluenceHC2, p19LowEndHC2, p20LowEndHC2, pMaxSetHeatFlowTempHC1, pMinSetHeatFlowTempHC1, pMaxSetHeatFlowTempHC2, pMinSetHeatFlowTempHC2]
+	parsemap = [p13GradientHC1, p14LowEndHC1, p15RoomInfluenceHC1, p16GradientHC2, p17LowEndHC2, p18RoomInfluenceHC2, p19FlowProportionHC1, p20FlowProportionHC2, pMaxSetHeatFlowTempHC1, pMinSetHeatFlowTempHC1, pMaxSetHeatFlowTempHC2, pMinSetHeatFlowTempHC2]
 	values = {}
 
 
@@ -38,7 +38,7 @@ class pHeat2Group(InformationGroup):
 	name = "P_Heat2Group"
 	description = "Heat2 Parameters"
 	command = b"\x06"
-	parsemap = [p21Hyst1, p22Hyst2, p23Hyst3, p24Hyst4, p25Hyst5, p26Hyst6, p27Hyst7, p28Hyst8, p29HystAsymmetry, p30integralComponent, p31MaxBoostStages, pMaxHeatFlowTemp, p78DualModePoint, p79BoosterTimeoutHC]
+	parsemap = [p21Hyst1, p22Hyst2, p23Hyst3, p24Hyst4, p25Hyst5, p26Hyst6, p27Hyst7, p28Hyst8, p29HystAsymmetry, p30integralComponent, p31MaxBoostStages, pMaxHeatFlowTemp, p49SummerModeTemp, p50SummerModeHysteresis, p77OutTempFilterTime, p78DualModePoint, p79BoosterTimeoutHC]
 	values = {}
 	
 
@@ -46,7 +46,7 @@ class pDHWGroup(InformationGroup):
 	name = "P_DHWGroup"
 	description = "DHW Parameters"
 	command = b"\x07"
-	parsemap = [p32HystDHW, p33BoosterTimeoutDHW, p34TempLimitBoostDHW, p35PasteurisationInterval, p36MaxDurationDHWLoad, pPasteurisationTemp, pMaxBoostStagesDHW, p84DHWTempSolarMode]
+	parsemap = [p32HystDHW, p33BoosterTimeoutDHW, p34TempLimitBoostDHW, p35PasteurisationInterval, p36MaxDurationDHWLoad, pPasteurisationTemp, pMaxBoostStagesDHW, p84EnableDHWBuffer, pMaxHeatFlowTempDHW, p89DHWMode]
 	values = {}
 
 
@@ -54,7 +54,7 @@ class pSolarGroup(InformationGroup):
 	name = "P_SolarGroup"
 	description = "Solar Parameters"
 	command = b"\x08"
-	parsemap = [p80EnableSolar, p81DiffTempSolarLoading, p82DelayCompStartSolar, p84DHWTempSolarMode, HystDiffTempSolar, CollectLimitTempSolar]
+	parsemap = [p80EnableSolar, p81DiffTempSolarLoading, p82DelayCompStartSolar, p83DHWTempSolarMode, HystDiffTempSolar, CollectLimitTempSolar]
 	values = {}
 
 
