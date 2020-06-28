@@ -396,13 +396,13 @@ class p55MaxPumpCycles(InformationObj):
 class p56OutTempMaxPumpCycles(InformationObj):
 	name = "p56OutTempMaxPumpCycles"
 	description = ""
-	parsemap = {"val":"uint:16"}
+	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
 class p57OutTempMinPumpCycles(InformationObj):
 	name = "p57OutTempMinPumpCycles"
 	description = ""
-	parsemap = {"val":"uint:16"}
+	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"
 	
 class p58SuppressTempCaptPumpStart(InformationObj):
