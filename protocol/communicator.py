@@ -132,7 +132,7 @@ class Communicator:
 								if new is not None:
 									print()
 									return new
-					print(f"ERROR RESPONSE: {respnse.hex()}")
+					print(f"ERROR RESPONSE: {response.hex()}")
 			except Exception as x:
 				print(x)
 		return None

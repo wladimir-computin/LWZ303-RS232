@@ -86,10 +86,10 @@ def plot(db, stufftoplot, plotname, from_date = datetime(2000, 1, 1), to_date = 
 	
 	# plotting the lines points  
 	for stuff in stufftoplot:
-		try:
-			y_axis[stuff] = savgol_filter(y_axis[stuff], 15, 2)
-		except:
-			pass
+	#	try:
+	#		y_axis[stuff] = savgol_filter(y_axis[stuff], 15, 2)
+	#	except:
+	#		pass
 		plt.plot(x_axis, y_axis[stuff], label = f"{stuff.name} ({stuff.unit})")
 		
 	plt.gcf().autofmt_xdate()
@@ -121,16 +121,17 @@ def main():
 	#plot(jsons, [sFlowTemp, sReturnTemp, sDhwTemp, sHeatingCircuitPump], "HC1")
 	#plot(jsons, [sCollectorTemp], "TEST")
 	
-	db_url = f"sqlite:///log/status_{datetime.now().strftime('%Y_%m')}.db"
+	#db_url = f"sqlite:///log/status_{datetime.now().strftime('%Y_%m')}.db"
+	db_url = f"sqlite:///log/status_{datetime.now().strftime('%Y_06')}.db"
 	from_date = datetime(2020, 6, 25)
 	to_date = datetime.now()
 	
 	with dataset.connect(db_url) as db:
 		plot(db, [sOutsideTempFiltered, sInsideTemp], "Temperature over time", from_date, to_date)
 		plot(db, [sDhwTemp, sCollectorTemp, sCompressor, sHcOpMode], "DHW", from_date, to_date)
-		plot(db, [sInputVentilatorSpeed, sOutputVentilatorSpeed, sInputVentilatorPower, sOutputVentilatorPower, sCompressor], "Fan speed over time", from_date, to_date)
+		plot(db, [sInputFanSpeed, sOutputFanSpeed, sInputFanPower, sOutputFanPower, sCompressor], "Fan speed over time", from_date, to_date)
 		plot(db, [sFlowTemp, sReturnTemp, sDhwTemp, sHeatingCircuitPump], "HC1", from_date, to_date)
-		plot(db, [sCollectorTemp], "TEST", from_date, to_date)
+		plot(db, [sOutputFanSpeed], "TEST", from_date, to_date)
 		
 
 if __name__== "__main__":

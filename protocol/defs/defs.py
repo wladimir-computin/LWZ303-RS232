@@ -369,15 +369,17 @@ class Error():
 			 40 : "F40_FloatSwitch",
 			 50 : "F50_SensorHeatPumpReturn",
 			 51 : "F51_SensorHeatPumpFlow",
-			 52 : "F52_SensorCondenserOutlet",
-			 86 : "F86_Unknown"}
+			 52 : "F52_SensorCondenserOutlet"}
 
 
 	def __init__(self, data=None, value=None):
 		if data is not None:
 			start = data.bytepos
-			val = data.read("uint:8")
-			self.value = self.faultmap[val]
+			val = data.read("uint:16")
+			if val in self.faultmap:
+				self.value = self.faultmap[val]
+			else:
+				self.value = f"F{val}_Unknown"
 			self.rawdata = data.bytes[start:data.bytepos]
 		else:
 			self.value = value

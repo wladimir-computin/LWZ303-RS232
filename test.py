@@ -100,9 +100,12 @@ def main():
 
 	#print(w.setSingleParameter(p42Fanstage3AirflowOutlet, 170))
 	#time.sleep(1)
-	groups = w.getBulkGroups(PARAM_GROUPS)
+	#groups = w.getBulkGroups(PARAM_GROUPS)
+	groups = w.getBulkGroups(STATUS_GROUPS)
 	for k,v in groups.items():
 		print(v)
+	
+	#w.setSingleParameter(sUserSetFanStage, 3)
 		
 	#print(json.dumps(groups, indent=4))
 	#print(w.getSingleGroup(sControlGroup))

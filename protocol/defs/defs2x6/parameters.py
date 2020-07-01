@@ -414,7 +414,7 @@ class p58SuppressTempCaptPumpStart(InformationObj):
 class p59RestartBeforeSetbackEnd(InformationObj):
 	name = "p59RestartBeforeSetbackEnd"
 	description = ""
-	parsemap = {"val":FixedPOneDec16}
+	parsemap = {"val":"uint:16"}
 	unit = "min"
 	
 class p70StartDryHeat(InformationObj):

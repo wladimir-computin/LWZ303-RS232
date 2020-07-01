@@ -46,6 +46,7 @@ class sHeatBlockTime(InformationObj):
 	name = "sHeatBlockTime"
 	description = ""
 	parsemap = {"val":"uint:16"}
+	unit = "s"
 	
 class sDhwBoosterStage(InformationObj):
 	name = "sDhwBoosterStage"
@@ -304,20 +305,20 @@ class sMixerOpen(InformationObj):
 	description = ""
 	parsemap = {"val":"bool"}
 	
-class sOutputVentilatorPower(InformationObj):
-	name = "sOutputVentilatorPower"
+class sOutputFanPower(InformationObj):
+	name = "sOutputFanPower"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = "%"
 
-class sInputVentilatorPower(InformationObj):
-	name = "sInputVentilatorPower"
+class sInputFanPower(InformationObj):
+	name = "sInputFanPower"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = "%"
 
-class sMainVentilatorPower(InformationObj):
-	name = "sMainVentilatorPower"
+class sMainFanPower(InformationObj):
+	name = "sMainFanPower"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = "%"
@@ -347,20 +348,8 @@ class sEvaporatorIceMonitor(InformationObj):
 	description = ""
 	parsemap = {"val":"bool"}
 
-class sOutputVentilatorSpeed(InformationObj):
-	name = "sOutputVentilatorSpeed"
-	description = ""
-	parsemap = {"val":"uint:8"}
-	unit = "rps"
-
-class sInputVentilatorSpeed(InformationObj):
-	name = "sInputVentilatorSpeed"
-	description = ""
-	parsemap = {"val":"uint:8"}
-	unit = "rps"
-
-class sMainVentilatorSpeed(InformationObj):
-	name = "sMainVentilatorSpeed"
+class sMainFanSpeed(InformationObj):
+	name = "sMainFanSpeed"
 	description = ""
 	parsemap = {"val":"uint:8"}
 	unit = "rps"
@@ -733,7 +722,7 @@ class sNumberErrors(InformationObj):
 class sError(InformationObj):
 	name = "sError"
 	description = ""
-	parsemap = {"error":Error, "time":Time16, "date":Date16}
+	parsemap = {"Error":Error, "Time":Time16, "Date":Date16}
 	values = {}
 	
 	def __init__(self, data=None, value=None):

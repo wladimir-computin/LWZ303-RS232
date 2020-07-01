@@ -56,6 +56,14 @@ class pSolarGroup(InformationGroup):
 	command = b"\x08"
 	parsemap = [p80EnableSolar, p81DiffTempSolarLoading, p82DelayCompStartSolar, p83DHWTempSolarMode, HystDiffTempSolar, CollectLimitTempSolar]
 	values = {}
+	
+	
+class sHistoryGroup(InformationGroup):
+	name = "S_HistoryGroup"
+	description = "History Status"
+	command = b"\x09"
+	parsemap = [sOperatingHours1, sOperatingHours2, sHeatingHours, sDhwHours, sCoolingHours]
+	values = {}
 
 
 class pCircPumpGroup(InformationGroup):
@@ -114,14 +122,6 @@ class pDryHeatGroup(InformationGroup):
 	values = {}
 	
 	
-class pP01P12Group(InformationGroup):
-	name = "P_P01-P12Group"
-	description = "P01-P12 Parameters"
-	command = b"\x17"
-	parsemap = [p01RoomTempDay, p02RoomTempNight, p03RoomTempStandby, p04DHWsetTempDay, p05DHWsetTempNight, p06DHWsetTempStandby, p07FanStageDay, p08FanStageNight, p09FanStageStandby, p10HCTempManual, p11DHWsetTempManual, p12FanStageManual]
-	values = {}
-	
-
 class sSolarGroup(InformationGroup):
 	name = "S_SolarGroup"
 	description = "Solar Status"
@@ -130,11 +130,19 @@ class sSolarGroup(InformationGroup):
 	values = {}
 	
 	
-class sProgramGroup(InformationGroup):
-	name = "S_ProgramGroup"
-	description = "Program Status"
-	command = b"\xEE"
-	parsemap = [sOperationMode, "bin:16", sProgStateHC, sProgStateDHW, sProgStateFan, sBaseTimeAP0, sStatusAP0, sStartTimeAP0, sEndTimeAP0]
+class pP01P12Group(InformationGroup):
+	name = "P_P01-P12Group"
+	description = "P01-P12 Parameters"
+	command = b"\x17"
+	parsemap = [p01RoomTempDay, p02RoomTempNight, p03RoomTempStandby, p04DHWsetTempDay, p05DHWsetTempNight, p06DHWsetTempStandby, p07FanStageDay, p08FanStageNight, p09FanStageStandby, p10HCTempManual, p11DHWsetTempManual, p12FanStageManual]
+	values = {}
+	
+	
+class sLast10ErrorsGroup(InformationGroup):
+	name = "S_Last10ErrorsGroup"
+	description = "Last 10 Errors"
+	command = b"\xD1"
+	parsemap = [sNumberErrors, "bin:8", sError1, sError2,sError3, sError4, sError5, sError6, sError7 ,sError8, sError8, sError10]
 	values = {}
 	
 	
@@ -146,19 +154,11 @@ class sFanGroup(InformationGroup):
 	values = {}
 	
 	
-class sHistoryGroup(InformationGroup):
-	name = "S_HistoryGroup"
-	description = "History Status"
-	command = b"\x09"
-	parsemap = [sOperatingHours1, sOperatingHours2, sHeatingHours, sDhwHours, sCoolingHours]
-	values = {}
-	
-	
-class sLast10ErrorsGroup(InformationGroup):
-	name = "S_Last10ErrorsGroup"
-	description = "Last 10 Errors"
-	command = b"\xD1"
-	parsemap = [sNumberErrors, sError1, sError2, sError3, sError4, sError5]
+class sProgramGroup(InformationGroup):
+	name = "S_ProgramGroup"
+	description = "Program Status"
+	command = b"\xEE"
+	parsemap = [sOperationMode, "bin:16", sProgStateHC, sProgStateDHW, sProgStateFan, sBaseTimeAP0, sStatusAP0, sStartTimeAP0, sEndTimeAP0]
 	values = {}
 	
 	
@@ -198,7 +198,7 @@ class sSystemGroup(InformationGroup):
 	name = "S_System"
 	description = "System Status"
 	command = b"\xF6"
-	parsemap = [sUserSetFanStage, sUserSetFanRemainingTime, sError1]
+	parsemap = ["bin:32", "bin:32", "bin:32", "bin:24", sUserSetFanStage, "bin:16", sUserSetFanRemainingTime]
 	values = {}
 	
 	
@@ -206,7 +206,7 @@ class sGlobalGroup(InformationGroup):
 	name = "S_GlobalGroup"
 	description = "Global Status"
 	command = b"\xFB"
-	parsemap = [sCollectorTemp, sOutsideTemp, sFlowTempHC1, sReturnTemp, sOHotGasTemp, sDhwTemp, sFlowTempHC2, sInsideTemp, sEvaporatorTemp, sCondensorTemp, sBoosterStage3, sBoosterStage2, sBoosterStage1, sCompressor, sHeatPipeValve, sDiverterValve, sDhwPump, sHeatingCircuitPump, "bin:6", sMixerClosed, sMixerOpen, sOutputVentilatorPower, sInputVentilatorPower, sMainVentilatorPower, sHighPressureSensor, sLowPressureSensor, sSignalAnode, sOvenFireplace, sEvaporatorIceMonitor, "bin:3", sOutputVentilatorSpeed, sInputVentilatorSpeed, sMainVentilatorSpeed, "bin:8", sOutsideTempFiltered, "bin:8", sRelHumidity, "bin:16", ]
+	parsemap = [sCollectorTemp, sOutsideTemp, sFlowTempHC1, sReturnTemp, sOHotGasTemp, sDhwTemp, sFlowTempHC2, sInsideTemp, sEvaporatorTemp, sCondensorTemp, sBoosterStage3, sBoosterStage2, sBoosterStage1, sCompressor, sHeatPipeValve, sDiverterValve, sDhwPump, sHeatingCircuitPump, "bin:6", sMixerClosed, sMixerOpen, sOutputFanPower, sInputFanPower, sMainFanPower, sHighPressureSensor, sLowPressureSensor, sSignalAnode, sOvenFireplace, sEvaporatorIceMonitor, "bin:3", sOutputFanSpeed, sInputFanSpeed, sMainFanSpeed, "bin:8", sOutsideTempFiltered, "bin:8", sRelHumidity, "bin:16", ]
 	values = {}	
 	
 	
@@ -223,4 +223,11 @@ class sFirmwareGroup(InformationGroup):
 	description = "Firmware Status"
 	command = b"\xFD"
 	parsemap = [sFirmVersion]
+	values = {}
+
+class genericUnknownGroup(InformationGroup):
+	name = "genericUnknownGroup"
+	description = "Used to test read unknown registers"
+	command = b"\xEC"
+	parsemap = []
 	values = {}
