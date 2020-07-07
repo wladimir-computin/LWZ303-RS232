@@ -121,9 +121,9 @@ def main():
 	#plot(jsons, [sFlowTemp, sReturnTemp, sDhwTemp, sHeatingCircuitPump], "HC1")
 	#plot(jsons, [sCollectorTemp], "TEST")
 	
-	#db_url = f"sqlite:///log/status_{datetime.now().strftime('%Y_%m')}.db"
-	db_url = f"sqlite:///log/status_{datetime.now().strftime('%Y_06')}.db"
-	from_date = datetime(2020, 6, 25)
+	db_url = f"sqlite:///log/status_{datetime.now().strftime('%Y_%m')}.db"
+	#db_url = f"sqlite:///log/status_{datetime.now().strftime('%Y_06')}.db"
+	from_date = datetime(2020, 6, 1)
 	to_date = datetime.now()
 	
 	with dataset.connect(db_url) as db:
@@ -131,7 +131,7 @@ def main():
 		plot(db, [sDhwTemp, sCollectorTemp, sCompressor, sHcOpMode], "DHW", from_date, to_date)
 		plot(db, [sInputFanSpeed, sOutputFanSpeed, sInputFanPower, sOutputFanPower, sCompressor], "Fan speed over time", from_date, to_date)
 		plot(db, [sFlowTemp, sReturnTemp, sDhwTemp, sHeatingCircuitPump], "HC1", from_date, to_date)
-		plot(db, [sOutputFanSpeed], "TEST", from_date, to_date)
+		plot(db, [sCollectorTemp], "TEST", from_date, to_date)
 		
 
 if __name__== "__main__":
