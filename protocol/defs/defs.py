@@ -114,7 +114,7 @@ class InformationGroup(object):
 		return self.values
 
 
-class FixedPOneDec8():
+class FixedPOneDec8(InformationObj):
 	value = 0
 
 	def __init__(self, data=None, value=None):
@@ -147,7 +147,7 @@ class FixedPOneDec8():
 		return float(self)
 	
 
-class FixedPOneDec16():
+class FixedPOneDec16(InformationObj):
 	value = 0
 
 	def __init__(self, data=None, value=None):
@@ -180,7 +180,7 @@ class FixedPOneDec16():
 		return float(self)
 	
 	
-class FixedPTwoDec16():
+class FixedPTwoDec16(InformationObj):
 	value = 0
 
 	def __init__(self, data=None, value=None):
@@ -213,7 +213,7 @@ class FixedPTwoDec16():
 		return float(self)
 	
 	
-class Time16():
+class Time16(InformationObj):
 	value = 0
 
 	def __init__(self, data=None, value=None):
@@ -249,7 +249,7 @@ class Time16():
 		return str(self)
 	
 	
-class Date16():
+class Date16(InformationObj):
 	value = 0
 
 	def __init__(self, data=None, value=None):
