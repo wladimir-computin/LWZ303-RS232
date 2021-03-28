@@ -31,7 +31,10 @@ class InformationObj(object):
 		bits = BitStream()
 		for k,v in self.parsemap.items():
 			if isinstance(v, str):
-				bits.append(Bits(f"{v}={self.value}"))
+				if "int" in v:
+					bits.append(Bits(f"{v}={int(self.value)}"))
+				else:
+					bits.append(Bits(f"{v}={self.value}"))
 			else:
 				bits.append(Bits(bytes=self.value.toBytes()))
 		self.rawdata = bits

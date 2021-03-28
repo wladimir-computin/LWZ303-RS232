@@ -5,6 +5,9 @@ PARAM_GROUPS = [pP01P12Group, pHeat1Group, pHeat2Group, pDHWGroup, pFanGroup, pR
 
 STATUS_GROUPS = [sHistoryGroup, sSolarGroup, sProgramGroup, sFanGroup, sControlGroup, sDhwGroup, sHC1Group, sHC2Group, sSystemGroup, sGlobalGroup, sFirmwareGroup, sLast10ErrorsGroup]
 
+ALL_PARAMS = [param for group in PARAM_GROUPS for param in group.parsemap if not isinstance(param,str)]
+ALL_STATUS = [status for group in STATUS_GROUPS for status in group.parsemap if not isinstance(status,str)]
+
 def paramToGroup(param):
 	for group in PARAM_GROUPS:
 		if param in group.parsemap:
