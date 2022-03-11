@@ -42,7 +42,7 @@ class Logger:
 		dbdata = json.loads(json.dumps(groups))
 		try:
 			self.now = datetime.now().replace(microsecond=0)
-			with dataset.connect(f"sqlite:///log/status_{now.strftime('%Y_%m')}.db", sqlite_wal_mode=False) as db:
+			with dataset.connect(f"sqlite:///log/status_{self.now.strftime('%Y_%m')}.db", sqlite_wal_mode=False) as db:
 				for name,group in dbdata.items():
 					ins = {}
 					ins.update({"timestamp" : self.now})
