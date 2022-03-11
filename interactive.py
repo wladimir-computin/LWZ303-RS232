@@ -13,6 +13,7 @@ import signal
 from datetime import datetime
 import dataset
 from visualize import *
+import re
 
 def _default(self, obj):
     return getattr(obj.__class__, "__json__", _default.default)(obj)
@@ -108,8 +109,8 @@ class MyPrompt(Cmd):
 				if p.name == arg:
 					param = p
 			print(self.wrapper.getSingleParameter(param))
-		except:
-			pass
+		except Exception as x:
+			print(x)
 	
 	def complete_getparam(self, text, line, begidx, endidx):
 		return [i.name for i in ALL_PARAMS if i.name.lower().startswith(text.lower())]
@@ -121,8 +122,8 @@ class MyPrompt(Cmd):
 				if p.name == arg:
 					status = p
 			print(self.wrapper.getSingleStatus(status))
-		except:
-			pass
+		except Exception as x:
+			print(x)
 	
 	def complete_getstatus(self, text, line, begidx, endidx):
 		return [i.name for i in ALL_STATUS if i.name.lower().startswith(text.lower())]
@@ -134,20 +135,23 @@ class MyPrompt(Cmd):
 				if p.name == arg:
 					group = p
 			print(self.wrapper.getSingleGroup(group))
-		except:
-			pass
+		except Exception as x:
+			print(x)
 	
 	def complete_getgroup(self, text, line, begidx, endidx):
 		return [i.name for i in STATUS_GROUPS if i.name.lower().startswith(text.lower())] + [i.name for i in PARAM_GROUPS if i.name.lower().startswith(text.lower())]
 	
 	def do_setparam(self, arg):
-		args = arg.split(" ")
-		
-		param = None
-		for p in ALL_PARAMS:
-			if p.name == args[0]:
-				param = p
-		print(self.wrapper.setSingleParameter(param, float(args[1])))
+		try:
+			args = arg.split(" ")
+			
+			param = None
+			for p in ALL_PARAMS:
+				if p.name == args[0]:
+					param = p
+			print(self.wrapper.setSingleParameter(param, float(args[1])))
+		except Exception as x:
+			print(x)
 	
 	def complete_setparam(self, text, line, begidx, endidx):
 		return [i.name for i in ALL_PARAMS if i.name.lower().startswith(text.lower())]
@@ -157,28 +161,34 @@ class MyPrompt(Cmd):
 			results = self.wrapper.getBulkGroups(PARAM_GROUPS)
 			for k,v in results.items():
 				print(v)
-		except:
-			pass
+		except Exception as x:
+			print(x)
 			
 	def do_status(self, arg):
 		try:
 			results = self.wrapper.getBulkGroups(STATUS_GROUPS)
 			for k,v in results.items():
 				print(v)
-		except:
-			pass
+		except Exception as x:
+			print(x)
 	
 	def do_plot(self, arg):
-		status = []
-		for a in arg.split(" "):
-			for p in ALL_STATUS:
-				if p.name == a:
-					status.append(p)
-					break
-					
-		db_url = f"sqlite:///log/status_{datetime.now().strftime('%Y_%m')}.db"
-		with dataset.connect(db_url) as db:
-			plot(db, status, "Plot")
+		try:
+			status = []
+			now = datetime.now().strftime('%Y_%m')
+			for a in arg.split(" "):
+				for p in ALL_STATUS:
+					if p.name == a:
+						status.append(p)
+						break
+					else:
+						if re.match(r"\d\d\d\d_\d\d", a):
+							now = a
+			db_url = f"sqlite:///log/status_{now}.db"
+			with dataset.connect(db_url) as db:
+				plot(db, status, "Plot")
+		except Exception as x:
+			print(x)
 			
 	def complete_plot(self, text, line, begidx, endidx):
 		return [i.name for i in ALL_STATUS if i.name.lower().startswith(text.lower())]
