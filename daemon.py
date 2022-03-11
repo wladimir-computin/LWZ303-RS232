@@ -41,20 +41,15 @@ class Logger:
 			
 		dbdata = json.loads(json.dumps(groups))
 		try:
-			now = datetime.now().replace(microsecond=0)
-			if self.now is None or self.now.month != now.month:
-				self.db = dataset.connect(f"sqlite:///log/status_{now.strftime('%Y_%m')}.db", sqlite_wal_mode=False)
-			self.now = now
-			self.db.begin()
-			for name,group in dbdata.items():
-				ins = {}
-				ins.update({"timestamp" : self.now})
-				ins.update(group)
-				self.db[name].insert(ins)
-			self.db.commit()
+			self.now = datetime.now().replace(microsecond=0)
+			with dataset.connect(f"sqlite:///log/status_{now.strftime('%Y_%m')}.db", sqlite_wal_mode=False) as db:
+				for name,group in dbdata.items():
+					ins = {}
+					ins.update({"timestamp" : self.now})
+					ins.update(group)
+					db[name].insert(ins)
 		except Exception as x:
 			print(x)
-			self.db.rollback()
 			#json.dump(groups, f, indent=4)
 		
 	def end(self):
