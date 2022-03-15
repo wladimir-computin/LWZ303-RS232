@@ -52,7 +52,7 @@ class Logger:
 			ins = {}
 			ins.update({"timestamp" : now})
 			ins.update(group)
-			db[name].insert(ins)
+			self.db[name].insert(ins)
 		
 	def end(self):
 		self.comm.stop()
