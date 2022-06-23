@@ -131,7 +131,7 @@ class FixedPOneDec8(InformationObj):
 			
 	def update(self):
 		bits = BitStream()
-		bits.append(Bits(f"int:8={int(self.value*10):d}"))
+		bits.append(Bits(f"int:8={int(self.value)*10:d}"))
 		self.rawdata = bits.bytes
 		
 	def update_recursive(self):
@@ -164,7 +164,7 @@ class FixedPOneDec16(InformationObj):
 			
 	def update(self):
 		bits = BitStream()
-		bits.append(Bits(f"int:16={int(self.value*10):d}"))
+		bits.append(Bits(f"int:16={int(self.value)*10:d}"))
 		self.rawdata = bits.bytes
 		
 	def update_recursive(self):
@@ -197,7 +197,7 @@ class FixedPTwoDec16(InformationObj):
 			
 	def update(self):
 		bits = BitStream()
-		bits.append(Bits(f"int:16={self.value*100:d}"))
+		bits.append(Bits(f"int:16={int(self.value)*100:d}"))
 		self.rawdata = bits.bytes
 		
 	def update_recursive(self):

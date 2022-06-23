@@ -149,7 +149,7 @@ class MyPrompt(Cmd):
 			for p in ALL_PARAMS:
 				if p.name == args[0]:
 					param = p
-			print(self.wrapper.setSingleParameter(param, float(args[1])))
+			print(self.wrapper.setSingleParameter(param, args[1]))
 		except Exception as x:
 			print(x)
 	
