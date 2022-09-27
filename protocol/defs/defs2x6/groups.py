@@ -10,6 +10,14 @@ class pFanGroup(InformationGroup):
 	values = {}
 	
 	
+class pExpertGroup(InformationGroup):
+	name = "P_Expert"
+	description = "Expert Parameters"
+	command = b"\x02"
+	parsemap = []
+	values = {}
+	
+	
 class pDefrostEvaGroup(InformationGroup):
 	name = "P_DefrostEvaGroup"
 	description = "Defrost Evaporator Parameters"
@@ -38,7 +46,7 @@ class pHeat2Group(InformationGroup):
 	name = "P_Heat2Group"
 	description = "Heat2 Parameters"
 	command = b"\x06"
-	parsemap = [p21Hyst1, p22Hyst2, p23Hyst3, p24Hyst4, p25Hyst5, p26Hyst6, p27Hyst7, p28Hyst8, p29HystAsymmetry, p30integralComponent, p31MaxBoostStages, pMaxHeatFlowTemp, p49SummerModeTemp, p50SummerModeHysteresis, p77OutTempFilterTime, p78DualModePoint, p79BoosterTimeoutHC]
+	parsemap = [p21Hyst1, p22Hyst2, p23Hyst3, p24Hyst4, p25Hyst5, p26Hyst6, p27Hyst7, p28Hyst8, p29HystAsymmetry, p30integralComponent, p31MaxBoostStages, pMaxHeatFlowTemp, p49SummerModeTemp, p50SummerModeHysteresis, "bin:8", p77OutTempFilterTime, p78DualModePoint, p79BoosterTimeoutHC, pPowerBooster1]
 	values = {}
 	
 
@@ -54,7 +62,7 @@ class pSolarGroup(InformationGroup):
 	name = "P_SolarGroup"
 	description = "Solar Parameters"
 	command = b"\x08"
-	parsemap = [p80EnableSolar, p81DiffTempSolarLoading, p82DelayCompStartSolar, p83DHWTempSolarMode, HystDiffTempSolar, CollectLimitTempSolar]
+	parsemap = [p80EnableSolar, p81DiffTempSolarLoading, p82DelayCompStartSolar, p83DHWTempSolarMode, pHystDiffTempSolar, pCollectLimitTempSolar]
 	values = {}
 	
 	
@@ -228,6 +236,6 @@ class sFirmwareGroup(InformationGroup):
 class genericUnknownGroup(InformationGroup):
 	name = "genericUnknownGroup"
 	description = "Used to test read unknown registers"
-	command = b"\xEC"
+	command = b"\x02"
 	parsemap = []
 	values = {}

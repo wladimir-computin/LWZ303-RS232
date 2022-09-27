@@ -14,6 +14,7 @@ from datetime import datetime
 import dataset
 from visualize import *
 import re
+import binascii
 
 def _default(self, obj):
     return getattr(obj.__class__, "__json__", _default.default)(obj)
@@ -195,6 +196,18 @@ class MyPrompt(Cmd):
 	
 	def do_selftest(self, arg):
 		selftest_write(self.wrapper.comm)
+		
+	def do_readregs(self, arg):
+		try:
+			args = arg.split(" ")
+			args_hex = [binascii.unhexlify(a) for a in args]
+			
+			responses = self.wrapper.comm.readRegisterBulk(args_hex)
+			
+			for r in responses:
+				print(r.hex())
+		except Exception as x:
+			print(x)
 
 	def default(self, inp):
 		pass

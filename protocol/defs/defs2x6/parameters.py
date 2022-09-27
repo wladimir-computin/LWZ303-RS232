@@ -451,10 +451,17 @@ class p75PassiveCooling(InformationObj):
 	description = ""
 	parsemap = {"val":"uint:16"}
 	
+class p76CorrectionInsideTemp(InformationObj):
+	name = "p76CorrectionInsideTemp"
+	description = ""
+	parsemap = {"val":FixedPOneDec8}
+	unit = "K"
+	
 class p77OutTempFilterTime(InformationObj):
 	name = "p77OutTempFilterTime"
 	description = ""
-	parsemap = {"val":FixedPOneDec16}
+	parsemap = {"val":"uint:8"}
+	unit = "h"
 	
 class p78DualModePoint(InformationObj):
 	name = "p78DualModePoint"
@@ -496,14 +503,26 @@ class p84EnableDHWBuffer(InformationObj):
 	description = ""
 	parsemap = {"val":"uint:8"}
 	
-class HystDiffTempSolar(InformationObj):
-	name = "HystDiffTempSolar"
+class p86CorrectionOutsideTemp(InformationObj):
+	name = "p86CorrectionOutsideTemp"
+	description = ""
+	parsemap = {"val":FixedPOneDec8}
+	unit = "K"
+	
+class pPowerBooster1(InformationObj):
+	name = "pPowerBooster1"
+	description = ""
+	parsemap = {"val":FixedPOneDec8}
+	unit = "kW"
+	
+class pHystDiffTempSolar(InformationObj):
+	name = "pHystDiffTempSolar"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "K"
 	
-class CollectLimitTempSolar(InformationObj):
-	name = "CollectLimitTempSolar"
+class pCollectLimitTempSolar(InformationObj):
+	name = "pCollectLimitTempSolar"
 	description = ""
 	parsemap = {"val":FixedPOneDec16}
 	unit = "°C"

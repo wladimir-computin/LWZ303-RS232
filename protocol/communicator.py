@@ -87,7 +87,7 @@ class Communicator:
 								response = response[2:]
 								print()
 								return response
-					print(f"ERROR RESPONSE: {response.hex()}")
+					#print(f"ERROR RESPONSE: {response.hex()}")
 				return b""
 		except Exception as x:
 			print(x)
@@ -132,7 +132,7 @@ class Communicator:
 								if new is not None:
 									print()
 									return new
-					print(f"ERROR RESPONSE: {response.hex()}")
+					print(f"ERROR RESPONSE!")
 			except Exception as x:
 				print(x)
 		return None
