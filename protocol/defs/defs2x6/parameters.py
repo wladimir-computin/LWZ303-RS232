@@ -105,13 +105,13 @@ class p18RoomInfluenceHC2(InformationObj):
 class p19FlowProportionHC1(InformationObj):
 	name = "p19FlowProportionHC1"
 	description = ""
-	parsemap = {"val":FixedPOneDec16}
+	parsemap = {"val":"uint:16"}
 	unit = "%"
 	
 class p20FlowProportionHC2(InformationObj):
 	name = "p20FlowProportionHC2"
 	description = ""
-	parsemap = {"val":FixedPOneDec16}
+	parsemap = {"val":"uint:16"}
 	unit = "%"
 	
 class pMaxSetHeatFlowTempHC1(InformationObj):
@@ -201,7 +201,8 @@ class p29HystAsymmetry(InformationObj):
 class p30integralComponent(InformationObj):
 	name = "p30integralComponent"
 	description = ""
-	parsemap = {"val":FixedPOneDec16}
+	parsemap = {"val":"uint:16"}
+	unit = "Kmin"
 	
 class p31MaxBoostStages(InformationObj):
 	name = "p31MaxBoostStages"
@@ -508,6 +509,36 @@ class p86CorrectionOutsideTemp(InformationObj):
 	description = ""
 	parsemap = {"val":FixedPOneDec8}
 	unit = "K"
+	
+class pClockHour(InformationObj):
+	name = "pClockHour"
+	description = "Clock (Hour)"
+	parsemap = {"val":"uint:8"}
+	
+class pClockMinutes(InformationObj):
+	name = "pClockMinutes"
+	description = "Clock (Minutes)"
+	parsemap = {"val":"uint:8"}
+	
+class pClockSeconds(InformationObj):
+	name = "pClockSeconds"
+	description = "Clock (Seconds)"
+	parsemap = {"val":"uint:8"}
+	
+class pClockYear(InformationObj):
+	name = "pClockYear"
+	description = "Clock (Year)"
+	parsemap = {"val":"uint:8"}
+	
+class pClockMonth(InformationObj):
+	name = "pClockMonth"
+	description = "Clock (Month)"
+	parsemap = {"val":"uint:8"}
+	
+class pClockDay(InformationObj):
+	name = "pClockDay"
+	description = "Clock (Day)"
+	parsemap = {"val":"uint:8"}
 	
 class pPowerBooster1(InformationObj):
 	name = "pPowerBooster1"

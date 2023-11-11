@@ -208,6 +208,20 @@ class MyPrompt(Cmd):
 				print(r.hex())
 		except Exception as x:
 			print(x)
+			
+	def do_settime(self, arg):
+		try:
+			t = time.localtime()
+			timevalues = {}
+			timevalues[pClockHour.name] = t.tm_hour
+			timevalues[pClockMinutes.name] = t.tm_min
+			timevalues[pClockSeconds.name] = t.tm_sec
+			timevalues[pClockYear.name] = t.tm_year - 2000
+			timevalues[pClockMonth.name] =  t.tm_mon
+			timevalues[pClockDay.name] = t.tm_mday
+			print(self.wrapper.setSingleGroup(pTimedateGroup, timevalues))
+		except Exception as x:
+			print(x)
 
 	def default(self, inp):
 		pass

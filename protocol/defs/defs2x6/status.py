@@ -812,36 +812,6 @@ class sWeekDay(InformationObj):
 	description = "Day of the Week"
 	parsemap = {"val":"uint:8"}
 	
-class pClockHour(InformationObj):
-	name = "pClockHour"
-	description = "Clock (Hour)"
-	parsemap = {"val":"uint:8"}
-	
-class pClockMinutes(InformationObj):
-	name = "pClockMinutes"
-	description = "Clock (Minutes)"
-	parsemap = {"val":"uint:8"}
-	
-class pClockSeconds(InformationObj):
-	name = "pClockSeconds"
-	description = "Clock (Seconds)"
-	parsemap = {"val":"uint:8"}
-	
-class pClockYear(InformationObj):
-	name = "pClockYear"
-	description = "Clock (Year)"
-	parsemap = {"val":"uint:8"}
-	
-class pClockMonth(InformationObj):
-	name = "pClockMonth"
-	description = "Clock (Month)"
-	parsemap = {"val":"uint:8"}
-	
-class pClockDay(InformationObj):
-	name = "pClockDay"
-	description = "Clock (Day)"
-	parsemap = {"val":"uint:8"}
-	
 class sFirmVersion(InformationObj):
 	name = "sFirmVersion"
 	description = "Firmware Version"

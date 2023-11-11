@@ -61,16 +61,23 @@ class Wrapper:
 	def setSingleParameter(self, param, value):
 		group = paramToGroup(param)
 		reg = self.getSingleGroup(group, keepalive=True)
+		print(reg)
 		if isinstance(reg.values[param.name].value, InformationObj):
 			reg.values[param.name].value.value = value
 		else:
 			reg.values[param.name].value = value
 		reg.update_recursive()
-		print(reg)
 		return group(self.comm.writeRegister(reg.command, reg.toBytes(), flags=[FLAG_READ, FLAG_RESET])).values[param.name]
 		
-	def setSingleGroup(self, group, value):
-		#too dangerous
-		return None
-		#return group(comm.writeRegister(group.command, value.toBytes()))
+	def setSingleGroup(self, group, values):
+		reg = self.getSingleGroup(group, keepalive=True)
+		print(reg)
+		for k,v in values.items():
+			if k in reg.values.keys():
+				if isinstance(reg.values[k].value, InformationObj):
+					reg.values[k].value.value = v
+				else:
+					reg.values[k].value = v
+		reg.update_recursive()
+		return group(self.comm.writeRegister(reg.command, reg.toBytes(), flags=[FLAG_READ, FLAG_RESET])).values
 		
